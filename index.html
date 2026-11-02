@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colcha dos Direitos — História 5º ano</title>
+<style>
+:root{
+  --fundo:#fff8ee; --papel:#fffdf8; --onu:#2b7bd6; --onu2:#1d5aa3; --girassol:#f6c445; --girassol2:#c99a12;
+  --retalho:#e5534b; --retalho2:#b83a33; --verde:#2fa36b; --verde2:#1f7a4f; --lilas:#8e5bd0;
+  --tinta:#2c2a35; --cinza:#7d7a86; --linha:#efdfc8; --ok:#1fa45b; --erro:#e0453a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Trebuchet MS","Segoe UI",Verdana,sans-serif;background:var(--fundo);color:var(--tinta);font-size:18px;line-height:1.5}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+.topo{background:repeating-linear-gradient(45deg,#fff3dc 0 14px,#fdebc8 14px 28px);text-align:center;padding:12px 10px 8px;border-bottom:4px dashed var(--girassol2)}
+.topo h1{margin:4px 0;font-size:1.75em;color:var(--onu2);letter-spacing:.5px}
+.topo p{margin:2px 0;color:#5a5566;font-size:.9em}
+.colcha{display:grid;grid-template-columns:repeat(13,minmax(0,40px));justify-content:center;gap:3px;padding:10px 6px;background:var(--papel);border-bottom:3px dashed var(--linha)}
+.ret{aspect-ratio:1;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:1.15em;line-height:1;background:#ece8e2;border:2px dashed #cfc7bb;filter:grayscale(1);opacity:.6;transition:all .6s}
+.ret small{font-size:.5em;color:var(--cinza);margin-top:2px}
+.ret.costurado{filter:none;opacity:1;background:var(--c);border:2px dashed #fff;box-shadow:0 0 0 2px var(--c)}
+.ret.costurado small{color:#fff}
+.ret.costurado{animation:pisca 1.2s ease 1}
+@keyframes pisca{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+nav.abas{position:sticky;top:0;z-index:20;background:#fff;box-shadow:0 2px 8px #0001;display:flex;gap:6px;overflow-x:auto;padding:8px}
+nav.abas button{flex:0 0 auto;border:2px solid var(--linha);background:#fff;border-radius:14px;padding:8px 12px;font-weight:bold;color:var(--tinta);position:relative}
+nav.abas button.ativa{background:var(--onu);border-color:var(--onu2);color:#fff}
+nav.abas button.trancada{background:#eee;color:#999;border-color:#ddd}
+nav.abas button .selo{position:absolute;top:-8px;right:-6px;background:var(--girassol);color:#5a3d00;border-radius:10px;font-size:.62em;padding:1px 6px}
+main{max-width:860px;margin:0 auto;padding:14px 12px 80px}
+section.aba{display:none}
+section.aba.ativa{display:block;animation:entra .35s ease}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:#fff;border-radius:18px;padding:16px 18px;margin:14px 0;box-shadow:0 3px 0 var(--linha),0 4px 14px #0000000d;border:2px solid var(--linha)}
+h2{color:var(--onu2);margin:.2em 0 .4em}
+h3{margin:.3em 0}
+.sub{color:var(--cinza);font-size:.88em}
+.btn{border:none;border-radius:14px;padding:10px 16px;font-weight:bold;color:#fff;background:var(--verde);box-shadow:0 3px 0 var(--verde2);margin:4px 2px}
+.btn:disabled{background:#c9c4cc;box-shadow:0 3px 0 #a9a3ad;cursor:not-allowed}
+.btn.fio{background:var(--onu);box-shadow:0 3px 0 var(--onu2)}
+.btn.faisca{background:var(--retalho);box-shadow:0 3px 0 var(--retalho2)}
+.btn.claro{background:#fff;color:var(--tinta);border:2px solid var(--linha);box-shadow:none}
+.trilha{display:grid;gap:10px}
+.etapa{display:flex;gap:12px;align-items:center;border-radius:16px;padding:12px 14px;border:2px solid var(--linha);background:#fff;text-align:left;width:100%;color:var(--tinta)}
+.etapa .ic{font-size:1.8em}
+.etapa.trancada{background:#f1f0f2;color:#8d8892;filter:grayscale(1)}
+.etapa.feita{border-color:var(--ok)}
+.etapa.nova{animation:brilho 1.4s ease 3;border-color:var(--girassol)}
+@keyframes brilho{0%,100%{box-shadow:0 0 0 0 #f6c44500}50%{box-shadow:0 0 0 8px #f6c44588}}
+.tag{display:inline-block;border-radius:10px;padding:1px 8px;font-size:.75em;font-weight:bold;margin-left:4px}
+.tag.ok{background:#dff5e8;color:var(--ok)}
+.tag.novo{background:#fff1c2;color:#7a5600}
+.tag.lock{background:#e7e5ea;color:#6b6670}
+.barra{height:14px;background:#eee;border-radius:10px;overflow:hidden;margin:6px 0}
+.barra>div{height:100%;background:linear-gradient(90deg,var(--onu),var(--girassol),var(--retalho));width:0;transition:width .4s}
+.bloco{border-left:8px dashed var(--c,var(--verde))}
+.bloco.fechado .corpo{display:none}
+.bloco .cab{display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer}
+.bloco.trancado{opacity:.55}
+.caixa{background:#fff8e3;border:2px dashed var(--girassol);border-radius:12px;padding:8px 12px;margin:10px 0;font-size:.92em}
+.regra{background:#eef6ff;border:2px solid #cfe3fb;border-radius:12px;padding:8px 12px;margin:8px 0}
+.exemplo{background:#effaf3;border:2px solid #c7ecd6;border-radius:12px;padding:8px 12px;margin:8px 0}
+.fala{background:#fff1ef;border-left:5px solid var(--retalho);border-radius:0 12px 12px 0;padding:6px 12px;margin:8px 0;font-style:italic}
+.quadro{width:100%;border-collapse:collapse;margin:8px 0;font-size:.95em}
+.quadro td{border:2px solid #e3d3ef;padding:6px 8px;vertical-align:top}
+.quadro td.ano{background:#efe4f8;color:#5d3a8f;font-weight:bold;text-align:center;width:70px}
+.pergunta{margin:14px 0 6px;padding-top:10px;border-top:2px dotted var(--linha)}
+.opcoes{display:grid;gap:6px}
+.op{text-align:left;border:2px solid var(--linha);background:#fff;border-radius:12px;padding:8px 12px;color:var(--tinta)}
+.op:hover:not(:disabled){border-color:var(--onu)}
+.op.certa{background:#e3f7ea;border-color:var(--ok);font-weight:bold}
+.op.errada{background:#fde6e4;border-color:var(--erro)}
+.op.cinza{background:#f2f1f3;color:#777}
+.op.sel{background:#e6f0ff;border-color:var(--onu);font-weight:bold}
+.op:disabled{cursor:default}
+.fb{border-radius:12px;padding:8px 12px;margin-top:6px;font-size:.92em;animation:entra .3s}
+.fb.ok{background:#e3f7ea}
+.fb.no{background:#fff0e0}
+.estrelas{font-size:1.2em}
+/* mapa */
+.mapa{position:relative}
+.mapa .centro{background:var(--onu);color:#fff;text-align:center;border-radius:50px;padding:14px;font-weight:bold;font-size:1.15em;margin:6px auto 14px;max-width:480px;box-shadow:0 4px 0 var(--onu2);border:3px dashed #fff}
+.ramos{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.ramo{border-radius:16px;padding:10px 12px;background:#fff;border:3px dashed var(--c);transition:filter .6s}
+.ramo h4{margin:0 0 6px;color:var(--c)}
+.mapa.incompleto .ramo{filter:saturate(.25)}
+.mapa.completo .ramo{animation:revela .8s ease}
+@keyframes revela{from{transform:scale(.96)}to{transform:none}}
+.no{margin:6px 0;font-size:.95em}
+.lacuna{display:inline-flex;gap:4px;vertical-align:middle;flex-wrap:wrap}
+.lacuna button{border:2px dashed var(--onu);background:#eef5ff;border-radius:10px;padding:2px 10px;font-weight:bold;color:var(--onu2)}
+.lacuna.feita span{display:inline-block;background:#e3f7ea;border:2px solid var(--ok);border-radius:10px;padding:2px 10px;font-weight:bold;color:var(--ok)}
+.lacuna button.erro{border-color:var(--erro);background:#fde6e4;color:var(--erro);animation:balanca .45s}
+@keyframes balanca{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.contador{position:sticky;top:58px;z-index:5;background:var(--retalho);color:#fff;border-radius:14px;padding:8px 12px;text-align:center;font-weight:bold;margin:8px 0}
+/* vf */
+.vf-frase{font-size:1.2em;font-weight:bold;text-align:center;margin:14px 0;min-height:3em}
+.vf-bts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.vf-bts .btn{font-size:1.1em;padding:12px 22px}
+/* resumo */
+.linha-tempo{position:relative;margin:8px 0 4px 10px;padding-left:22px;border-left:4px dashed var(--onu)}
+.marco{position:relative;margin:0 0 12px}
+.marco::before{content:"";position:absolute;left:-32px;top:4px;width:16px;height:16px;border-radius:4px;background:var(--girassol);border:3px solid var(--onu2)}
+.marco b.ano{color:var(--retalho2)}
+.comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.col{border-radius:14px;padding:10px;border:2px dashed var(--c);background:#fff}
+.col h4{margin:0 0 4px;color:var(--c);text-align:center}
+.col ul{margin:4px 0;padding-left:18px;font-size:.95em}
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.palavra{background:#fff;border:2px solid var(--linha);border-radius:12px;padding:8px 10px;font-size:.92em}
+.palavra b{color:var(--onu2)}
+.postits{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.postit{background:#fff59a;padding:12px;border-radius:4px;box-shadow:2px 3px 6px #0002;transform:rotate(-1deg);font-size:.95em}
+.postit:nth-child(even){transform:rotate(1.2deg);background:#dff0ff}
+.relampago button{width:100%;text-align:left}
+.resp-oculta{display:none;margin:4px 0 8px 10px;color:var(--verde2);font-weight:bold}
+/* modal */
+.fundo-modal{position:fixed;inset:0;background:#2c2a35cc;display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
+.fundo-modal.aberto{display:flex}
+.modal{background:#fff;border-radius:20px;max-width:440px;width:100%;padding:20px;text-align:center;animation:entra .3s}
+.painel-salvar{font-size:.85em;color:var(--cinza)}
+input.codigo{font-size:1em;padding:8px 10px;border-radius:12px;border:2px solid var(--linha);width:170px;text-transform:uppercase}
+table.rel{width:100%;border-collapse:collapse;font-size:.88em}
+table.rel td,table.rel th{border-bottom:1px solid #eee;padding:5px;text-align:left;vertical-align:top}
+.gab-q{border-top:2px dotted var(--linha);padding-top:8px;margin-top:10px}
+.gab-op{border-radius:10px;padding:5px 10px;margin:4px 0;font-size:.92em}
+.gab-op.certa{background:#e3f7ea;border:2px solid var(--ok)}
+.gab-op.cinza{background:#f2f1f3;color:#666}
+.gab-op.marcada{outline:3px solid var(--onu)}
+.placar-final{text-align:center;font-size:1.3em}
+.trofeu{font-size:3em}
+footer{text-align:center;color:var(--cinza);font-size:.85em;padding:20px}
+@media (max-width:620px){body{font-size:16.5px}.topo h1{font-size:1.4em}.colcha{grid-template-columns:repeat(7,minmax(0,40px))}}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div style="font-size:2em">🧵🕊️📜⚖️🗳️</div>
+  <h1>Colcha dos Direitos</h1>
+  <p><b>História · 5º ano</b> · Avaliação Mensal 2 · 3º trimestre</p>
+  <p>Unidade 9: História dos direitos humanos · Unidade 10: A cidadania no Brasil</p>
+</header>
+<div class="colcha" id="vila" title="Cada retalho ganha cor quando você termina a parte dele na Leitura Guiada"></div>
+<nav class="abas" id="abas"></nav>
+<main>
+
+<!-- ============ INÍCIO ============ -->
+<section class="aba" id="sec-inicio">
+  <div class="card">
+    <h2>👋 Olá, jovem aprendiz!</h2>
+    <p>Eu sou o <b>Tonico</b>, um carretel de linha 🧵. Vamos costurar juntos a <b>Colcha dos Direitos</b>: cada parte da Leitura Guiada é um <b>retalho</b> — um direito que as pessoas conquistaram com muita luta.</p>
+    <p>Terminou as perguntas de um retalho? Ele ganha cor lá em cima! No fim, a colcha fica inteira: direitos para todos, costurados juntos.</p>
+  </div>
+  <div class="card">
+    <h2>📋 O que vai cair na prova</h2>
+    <p><b>Unidade 9 – História dos direitos humanos</b></p>
+    <ul>
+      <li>Declaração dos Direitos Humanos (livro p. 58 e 59)</li>
+      <li>Leis abolicionistas (p. 68 e 69)</li>
+      <li>A cidadania aos ex-escravizados (p. 70)</li>
+      <li>A revolta contra a violência — Revolta da Chibata (p. 71 e 72)</li>
+      <li>A luta contra a segregação racial (p. 73 a 76)</li>
+    </ul>
+    <p><b>Unidade 10 – A cidadania no Brasil</b></p>
+    <ul>
+      <li>Constituição (p. 88)</li>
+      <li>A primeira Constituição do Brasil e o Poder Moderador (p. 92)</li>
+      <li>A Constituição Cidadã (p. 107)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>🛤️ Sua trilha</h2>
+    <p class="sub">Os materiais abrem um por vez, na ordem. Conclua um para destravar o próximo.</p>
+    <div class="trilha" id="trilhaCards"></div>
+  </div>
+  <div class="card">
+    <h2>🧭 Como usar</h2>
+    <ol>
+      <li>Os materiais abrem <b>um por vez, na ordem</b>. Conclua um para destravar o próximo.</li>
+      <li>Leia cada retalho com calma <b>antes</b> de responder.</li>
+      <li>Errou? Tudo bem! Leia a explicação e siga em frente. Errar aqui é treino.</li>
+      <li>Depois de terminar tudo, os materiais ficam abertos para revisar quantas vezes quiser.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h2>💾 Seu progresso</h2>
+    <p class="painel-salvar" id="painelSalvar">Seu progresso é salvo sozinho neste aparelho.</p>
+    <button class="btn claro" id="btExportar">📥 Exportar</button>
+    <button class="btn claro" id="btImportar">📤 Importar</button>
+    <button class="btn claro" id="btZerar">🗑️ Zerar tudo</button>
+    <input type="file" id="arqImportar" accept=".json,application/json" style="display:none">
+  </div>
+  <div class="card">
+    <h2>📊 Relatório para os pais</h2>
+    <p class="sub">Digite o código do Simulado (SIM-…) ou o código da família.</p>
+    <input class="codigo" id="codPais" placeholder="Código" autocomplete="off">
+    <button class="btn fio" id="btRelatorio">Abrir</button>
+    <div id="areaPais"></div>
+    <p class="sub" style="margin-top:10px">💡 <b>Dica para os pais:</b> o progresso fica no navegador deste aparelho. Se trocar de aparelho, use 📥 Exportar / 📤 Importar ou libere a trilha com o código da família.</p>
+  </div>
+</section>
+
+<!-- ============ LEITURA GUIADA ============ -->
+<section class="aba" id="sec-leitura">
+  <div class="card">
+    <h2>📖 Leitura Guiada — costurando a colcha</h2>
+    <p>Leia cada retalho e responda as perguntas do fim. O próximo retalho abre quando você responder as perguntas do anterior. Cada retalho terminado <b>ganha cor</b> lá em cima! 🧵</p>
+    <div class="barra"><div id="barraLeitura"></div></div>
+    <p class="sub" id="txtLeitura"></p>
+  </div>
+  <div id="blocosLeitura"></div>
+  <div class="card" id="fimLeitura">
+    <h2>⚠️ 10 pegadinhas da colcha</h2>
+    <ol>
+      <li><b>1945</b> = Carta das Nações Unidas (criação da ONU). <b>1948</b> = Declaração Universal dos Direitos Humanos. Não troque!</li>
+      <li>A <b>Lei Eusébio de Queirós (1850)</b> proibiu só o <b>tráfico negreiro</b> — a escravidão continuou até 1888.</li>
+      <li>Na <b>Lei do Ventre Livre (1871)</b>, a criança nascia livre, mas ficava sob o senhor da mãe até os <b>8 anos</b> e podia trabalhar até os <b>21</b>.</li>
+      <li>A <b>Lei dos Sexagenários (1885)</b> libertava quem tinha <b>mais de 60 anos</b> — mas poucos chegavam a essa idade e ainda deviam <b>3 anos</b> de trabalho.</li>
+      <li>Quem assinou a <b>Lei Áurea (1888)</b> foi a <b>princesa Isabel</b>. Quem proclamou a <b>República (1889)</b> foi <b>Deodoro da Fonseca</b>.</li>
+      <li>Depois da abolição, os ex-escravizados <b>não</b> ganharam moradia, escola, saúde nem emprego: a cidadania foi <b>negada</b>.</li>
+      <li>Na Revolta da Chibata, o governo <b>aceitou</b> as exigências, mas <b>depois</b> perseguiu os marinheiros.</li>
+      <li>Rosa Parks <b>se recusou</b> a ceder o lugar; quem organizou o <b>boicote</b> aos ônibus foi <b>Martin Luther King</b>.</li>
+      <li><b>Apartheid</b> = África do Sul (Mandela). Segregação no <b>ônibus</b> de Montgomery = Estados Unidos (Rosa Parks).</li>
+      <li><b>Poder Moderador</b> = Constituição de <b>1824</b> (D. Pedro I). Hoje os poderes são só <b>três</b>: Executivo, Legislativo e Judiciário.</li>
+    </ol>
+    <h3>🗂️ Onde está cada assunto</h3>
+    <table class="rel">
+      <tr><th>Assunto da prova</th><th>Retalho</th></tr>
+      <tr><td>O que são os direitos humanos e a criação da ONU (p. 58)</td><td>1 · Retalho da Paz</td></tr>
+      <tr><td>Declaração Universal dos Direitos Humanos (p. 56, 59)</td><td>2 · Retalho da Declaração</td></tr>
+      <tr><td>Movimento abolicionista e pressões internas e externas (p. 66–68)</td><td>3 · Retalho das Vozes</td></tr>
+      <tr><td>Leis abolicionistas: 1850 e 1871 (p. 68–69)</td><td>4 · Retalho das Primeiras Leis</td></tr>
+      <tr><td>Leis abolicionistas: 1884, 1885 e 1888 (p. 69)</td><td>5 · Retalho da Liberdade</td></tr>
+      <tr><td>A cidadania negada aos ex-escravizados (p. 70)</td><td>6 · Retalho Remendado</td></tr>
+      <tr><td>A revolta contra a violência: Revolta da Chibata (p. 71–72)</td><td>7 · Retalho do Mar</td></tr>
+      <tr><td>Segregação racial nos EUA: Rosa Parks e Martin Luther King (p. 73–75)</td><td>8 · Retalho do Ônibus</td></tr>
+      <tr><td>Apartheid e Nelson Mandela (p. 76)</td><td>9 · Retalho da África do Sul</td></tr>
+      <tr><td>Constituição (p. 88–89)</td><td>10 · Retalho da Lei Maior</td></tr>
+      <tr><td>A primeira Constituição e o Poder Moderador (p. 92–93)</td><td>11 · Retalho da Coroa</td></tr>
+      <tr><td>A Constituição Cidadã (p. 106–107)</td><td>12 · Retalho Cidadão</td></tr>
+      <tr><td>Tudo misturado</td><td>13 · Arremate da Colcha (revisão geral)</td></tr>
+    </table>
+  </div>
+  <div class="card" style="text-align:center">
+    <button class="btn faisca" data-proximo="mapa">🧠 Próximo: Mapa Mental para encaixar</button>
+  </div>
+</section>
+
+<!-- ============ MAPA MENTAL ============ -->
+<section class="aba" id="sec-mapa">
+  <div class="card">
+    <h2>🧠 Mapa Mental para encaixar</h2>
+    <p>O mapa da colcha está com <b>peças faltando</b>. Em cada buraco, clique na palavra certa. Acertou? A peça fica verde. Errou? Ela balança e você tenta de novo.</p>
+  </div>
+  <div class="contador" id="contadorMapa">🧩 Mapa: 0 de 12 peças encaixadas</div>
+  <div class="mapa incompleto" id="mapa">
+    <div class="centro">🧵 Colcha dos Direitos<br><span style="font-weight:normal;font-size:.85em">a luta pelos direitos humanos e pela cidadania</span></div>
+    <div class="ramos" id="ramosMapa"></div>
+  </div>
+  <div class="card" id="mapaFim" style="display:none;text-align:center">
+    <div class="trofeu">🧠</div>
+    <h2>Mapa completo!</h2>
+    <p>Foi você que montou esse mapa. Agora ele está inteiro e colorido!</p>
+  </div>
+  <div class="card" style="text-align:center">
+    <button class="btn faisca" data-proximo="vf">✅ Próximo: Verdadeiro ou Falso</button>
+  </div>
+</section>
+
+<!-- ============ VERDADEIRO OU FALSO ============ -->
+<section class="aba" id="sec-vf">
+  <div class="card" id="vfJogo"></div>
+  <div class="card" style="text-align:center">
+    <button class="btn faisca" data-proximo="resumo">🗺️ Próximo: Resumo</button>
+  </div>
+</section>
+
+<!-- ============ RESUMO ============ -->
+<section class="aba" id="sec-resumo">
+  <div class="card">
+    <h2>🗺️ Resumo da Colcha</h2>
+    <p>Tudo o que cai na prova numa página só. Leia até o fim — lá embaixo tem um botão para marcar que você terminou.</p>
+  </div>
+
+  <div class="card">
+    <h2>🕰️ Linha do tempo — Brasil</h2>
+    <div class="linha-tempo">
+      <div class="marco"><b class="ano">1824</b> — D. Pedro I <b>outorga</b> (impõe) a <b>primeira Constituição</b> do Brasil, com o <b>Poder Moderador</b>. A escravidão continua.</div>
+      <div class="marco"><b class="ano">1850</b> — <b>Lei Eusébio de Queirós</b>: proíbe o <b>tráfico negreiro</b>.</div>
+      <div class="marco"><b class="ano">1871</b> — <b>Lei do Ventre Livre</b>: filhos de escravizadas nascem livres (mas ficam com o senhor até os 8 anos; podem trabalhar até os 21).</div>
+      <div class="marco"><b class="ano">1884</b> — Fim da escravidão no <b>Ceará</b>, no <b>Amazonas</b> e no <b>Rio Grande do Sul</b>.</div>
+      <div class="marco"><b class="ano">1885</b> — <b>Lei dos Sexagenários</b>: livres os escravizados com mais de <b>60 anos</b> (depois de mais 3 anos de trabalho).</div>
+      <div class="marco"><b class="ano">1888</b> — <b>Lei Áurea</b>, assinada pela <b>princesa Isabel</b>: abolição da escravidão em todo o Brasil.</div>
+      <div class="marco"><b class="ano">15/11/1889</b> — <b>Deodoro da Fonseca</b> proclama a <b>República</b> e vira o primeiro presidente.</div>
+      <div class="marco"><b class="ano">1910</b> — <b>Revolta da Chibata</b>, liderada por <b>João Cândido</b>, contra os castigos na Marinha.</div>
+      <div class="marco"><b class="ano">Década de 1980</b> — movimento <b>Diretas Já</b> pede a volta da democracia.</div>
+      <div class="marco"><b class="ano">5/10/1988</b> — promulgada a <b>Constituição Cidadã</b>: voto universal a partir dos <b>16 anos</b>, inclusive para analfabetos.</div>
+      <div class="marco"><b class="ano">1996 e 2020</b> — urnas <b>eletrônicas</b> (1996) e <b>biometria</b> (2020) nas eleições.</div>
+    </div>
+    <h3 style="margin-top:12px">🌍 Linha do tempo — mundo</h3>
+    <div class="linha-tempo" style="border-left-color:var(--retalho)">
+      <div class="marco"><b class="ano">1939–1945</b> — <b>Segunda Guerra Mundial</b>: milhões de vítimas e cidades destruídas.</div>
+      <div class="marco"><b class="ano">26/6/1945</b> — 50 países (incluindo o Brasil) assinam a <b>Carta das Nações Unidas</b> → criação da <b>ONU</b>.</div>
+      <div class="marco"><b class="ano">1948</b> — <b>Declaração Universal dos Direitos Humanos</b> (30 artigos). Na África do Sul, começa o <b>apartheid</b>.</div>
+      <div class="marco"><b class="ano">1º/12/1955</b> — <b>Rosa Parks</b> se recusa a ceder o lugar no ônibus em Montgomery (EUA).</div>
+      <div class="marco"><b class="ano">1962</b> — <b>Nelson Mandela</b> é preso (ficou 27 anos na prisão).</div>
+      <div class="marco"><b class="ano">1964</b> — <b>Martin Luther King</b> ganha o Prêmio Nobel da Paz.</div>
+      <div class="marco"><b class="ano">1990 · 1993 · 1994</b> — Mandela é solto · ganha o Nobel da Paz · é eleito o primeiro presidente negro da África do Sul.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚖️ As leis abolicionistas lado a lado</h2>
+    <table class="quadro">
+      <tr><td class="ano">1850</td><td><b>Eusébio de Queirós</b> — proibiu o tráfico negreiro. O comércio interno de escravizados ficou mais intenso e mais caro.</td></tr>
+      <tr><td class="ano">1871</td><td><b>Ventre Livre</b> — livres os filhos de escravizadas nascidos a partir da lei; sob o senhor até 8 anos; serviços até 21 anos ou indenização em dinheiro ao dono.</td></tr>
+      <tr><td class="ano">1884</td><td><b>Ceará, Amazonas e Rio Grande do Sul</b> — Ceará: 3 anos de luta (jangadeiros, pescadores, negros livres e libertos). AM e RS: campanha popular e jornalística.</td></tr>
+      <tr><td class="ano">1885</td><td><b>Sexagenários</b> — livres com mais de 60 anos, depois de mais 3 anos de trabalho como indenização. Poucos chegavam a essa idade; os que chegavam, ficavam abandonados.</td></tr>
+      <tr><td class="ano">1888</td><td><b>Lei Áurea</b> — princesa Isabel; abolição em todo o Brasil, por pressões internas (abolicionistas) e externas (Inglaterra).</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🚫 A luta contra a segregação racial</h2>
+    <div class="comp">
+      <div class="col" style="--c:#e07a1f"><h4>🇺🇸 ESTADOS UNIDOS</h4><ul><li>Leis segregacionistas em estados do <b>sul</b></li><li><b>Rosa Parks</b> (Alabama): não cedeu o lugar no ônibus (1955) e foi presa</li><li><b>Martin Luther King</b>: pastor, <b>desobediência civil</b> sem violência; boicote aos ônibus; Nobel da Paz 1964</li><li>A lei do ônibus foi declarada <b>inconstitucional</b></li></ul></div>
+      <div class="col" style="--c:#c79a00"><h4>🇿🇦 ÁFRICA DO SUL</h4><ul><li><b>Apartheid</b> = "separação", criado em <b>1948</b> por um governo só de brancos</li><li><b>Nelson Mandela</b>: advogado, preso em 1962, <b>27 anos</b> na prisão</li><li>Solto em 1990; Nobel da Paz 1993; <b>1º presidente negro</b> (1994)</li><li>Apelidos: <b>Madiba</b> e <b>Tata</b> (pai)</li></ul></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📘 Constituição de 1824 × Constituição de 1988</h2>
+    <div class="comp">
+      <div class="col" style="--c:#b5478a"><h4>👑 1824 (Império)</h4><ul><li><b>Outorgada</b> (imposta) por D. Pedro I</li><li>Criou o <b>Poder Moderador</b>: o imperador interferia no Executivo, no Legislativo e no Judiciário</li><li>Manteve a <b>escravidão</b></li><li>Voto só de homens livres, com mais de <b>25 anos</b> e <b>renda alta</b></li></ul></div>
+      <div class="col" style="--c:#2fa36b"><h4>🗳️ 1988 (Constituição Cidadã)</h4><ul><li>Feita por uma <b>Assembleia Nacional Constituinte</b></li><li>Três poderes divididos e independentes: <b>Executivo, Legislativo e Judiciário</b></li><li><b>Voto universal</b>: maiores de <b>16 anos</b>, inclusive analfabetos</li><li>Direitos dos <b>indígenas</b> e dos <b>quilombolas</b></li></ul></div>
+    </div>
+    <div class="regra" style="margin-top:10px">📌 <b>Constituição</b> = o conjunto de <b>leis maiores</b> de um país: define a forma de governo, a organização e a divisão dos poderes e os direitos e deveres dos cidadãos. Antes da de 1988, o Brasil já tinha tido <b>outras seis</b>.</div>
+  </div>
+
+  <div class="card">
+    <h2>🔤 Palavras importantes</h2>
+    <div class="grade">
+      <div class="palavra"><b>Direitos humanos</b> — direitos garantidos por lei a toda pessoa, sem importar etnia, origem, cultura, idade, nacionalidade ou religião.</div>
+      <div class="palavra"><b>ONU</b> — Organização das Nações Unidas, criada a partir da Carta de 1945 para trabalhar pela paz e pelos direitos humanos.</div>
+      <div class="palavra"><b>Universal</b> — que vale para todas as pessoas, em todo o mundo.</div>
+      <div class="palavra"><b>Abolicionista</b> — quem lutava pela extinção (fim) da escravidão.</div>
+      <div class="palavra"><b>Tráfico negreiro</b> — comércio de africanos escravizados trazidos para o Brasil; proibido em 1850.</div>
+      <div class="palavra"><b>Monarquia</b> — governo de um rei ou rainha; o poder passa para os descendentes.</div>
+      <div class="palavra"><b>Cortiço</b> — habitação precária onde muitos ex-escravizados foram morar nas cidades.</div>
+      <div class="palavra"><b>Chibatada</b> — golpe de chicote, castigo usado na Marinha até 1910.</div>
+      <div class="palavra"><b>Anistia</b> — perdão (absolvição) depois que uma revolta termina.</div>
+      <div class="palavra"><b>Segregar</b> — separar, isolar, afastar.</div>
+      <div class="palavra"><b>Ativista</b> — pessoa que trabalha com muito empenho por uma causa política, humanitária ou ambiental.</div>
+      <div class="palavra"><b>Boicote</b> — protesto em que se evita usar ou comprar um produto ou serviço.</div>
+      <div class="palavra"><b>Inconstitucional</b> — que está em desacordo com as leis de um país e viola os direitos dos cidadãos.</div>
+      <div class="palavra"><b>Apartheid</b> — "separação": leis da África do Sul que separavam negros e brancos.</div>
+      <div class="palavra"><b>Regime autoritário</b> — pouca participação do povo, repressão e censura.</div>
+      <div class="palavra"><b>Regime democrático</b> — direitos políticos, sociais e civis garantidos: votar, se expressar, reivindicar.</div>
+      <div class="palavra"><b>Outorgar</b> — impor algo de acordo com a vontade de uma pessoa ou grupo.</div>
+      <div class="palavra"><b>Poder Moderador</b> — quarto poder da Constituição de 1824, só do imperador, que interferia nos outros três.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📌 Dicas de prova</h2>
+    <div class="postits">
+      <div class="postit"><b>1945</b> ONU (Carta) → <b>1948</b> Declaração Universal (30 artigos). Dia 10 de dezembro = Dia dos Direitos Humanos.</div>
+      <div class="postit">Leis em ordem: <b>1850 → 1871 → 1884 → 1885 → 1888</b>. Tráfico → Ventre → 3 províncias → Sexagenários → Áurea.</div>
+      <div class="postit">Pressões <b>internas</b>: abolicionistas + resistência dos escravizados. <b>Externas</b>: Inglaterra (queria mercado consumidor).</div>
+      <div class="postit">Abolição (1888) ≠ cidadania: sem moradia, escola, saúde e emprego. Patrões preferiram <b>imigrantes europeus</b>.</div>
+      <div class="postit">Chibata 1910: <b>2 300</b> marinheiros, <b>4 dias</b>, <b>5 navios</b>, líder <b>João Cândido</b>, carta-manifesto.</div>
+      <div class="postit">Rosa Parks = <b>ônibus</b> (EUA). Mandela = <b>apartheid</b> (África do Sul). King e Mandela = <b>Nobel da Paz</b>.</div>
+      <div class="postit">1824: <b>4 poderes</b> (com o Moderador). Hoje: <b>3 poderes</b> (Executivo, Legislativo, Judiciário).</div>
+      <div class="postit">Constituição Cidadã (1988): voto a partir dos <b>16</b>, analfabetos incluídos, indígenas e quilombolas.</div>
+    </div>
+  </div>
+
+  <div class="card relampago">
+    <h2>⚡ Mini-quiz relâmpago</h2>
+    <p class="sub">Pense na resposta e clique para conferir.</p>
+    <div id="relampago"></div>
+  </div>
+
+  <div class="card" style="text-align:center" id="fimResumo">
+    <p>Chegou até aqui? Então marque:</p>
+    <button class="btn" id="btLiResumo" disabled>✅ Li o resumo até o fim</button>
+    <p class="sub" id="txtLiResumo">O botão acende quando você chegar ao fim da página.</p>
+    <button class="btn faisca" data-proximo="simulado">📝 Pronto para o Simulado!</button>
+  </div>
+</section>
+
+<!-- ============ SIMULADO ============ -->
+<section class="aba" id="sec-simulado">
+  <div class="card">
+    <h2>📝 Simulado da Colcha</h2>
+    <p><b>25 questões</b>. Leia com atenção, marque uma alternativa em cada questão e clique em <b>Enviar</b> no final. Depois aparecem sua nota, seu código e o gabarito comentado.</p>
+    <div class="barra"><div id="barraSim"></div></div>
+    <p class="sub" id="txtSim"></p>
+  </div>
+  <div id="questoesSim"></div>
+  <div class="card" style="text-align:center" id="envioSim">
+    <button class="btn faisca" id="btEnviarSim">📨 Enviar Simulado</button>
+  </div>
+  <div id="resultadoSim"></div>
+</section>
+
+</main>
+<footer>🧵 Colcha dos Direitos · História 5º ano · conteúdo do livro Phases História 5 – Livro 2 (Unidades 9 e 10)</footer>
+
+<div class="fundo-modal" id="fundoModal"><div class="modal" id="modal"></div></div>
+<script>
+// ===================== DADOS (fonte: Phases História 5 – Livro 2, P+: Un. 9 pp. 56-85 e Un. 10 pp. 86-111) =====================
+const BLOCOS = [
+{ id:'b1', emoji:'🕊️', titulo:'Retalho da Paz', tema:'O que são os direitos humanos · a criação da ONU', pag:'p. 58', cor:'#2b7bd6',
+  html:`<p class="fala">Tonico: "Olá, jovem aprendiz! Eu sou o Tonico, um carretel de linha. Cada retalho desta colcha é um direito que alguém conquistou. Vamos costurar o primeiro?"</p>
+<p>Os <b>direitos humanos</b> são direitos <b>garantidos por lei a toda pessoa</b>, independentemente de etnia, origem, cultura, idade, nacionalidade, grupo social, religião etc. Entre eles estão o direito à <b>vida</b>, à <b>liberdade</b>, à <b>educação</b> e ao <b>trabalho</b>.</p>
+<p><b>Por que eles foram criados?</b> A <b>Segunda Guerra Mundial</b>, que aconteceu entre <b>1939 e 1945</b>, deixou milhões de vítimas — mortos, feridos e órfãos — e cidades inteiras destruídas.</p>
+<p>Quando a guerra acabou, <b>50 países, incluindo o Brasil</b>, se reuniram para fazer um <b>acordo de cooperação</b> e evitar que o mundo vivesse de novo um conflito assim.</p>
+<div class="regra">📌 <b>26 de junho de 1945</b> — na <b>Conferência de São Francisco</b> (Estados Unidos), os 50 países assinaram a <b>Carta das Nações Unidas</b>. Ela foi um marco para a criação da <b>ONU</b> (Organização das Nações Unidas), que trabalha pela <b>paz</b>, pelo <b>desenvolvimento mundial</b> e pelos <b>direitos humanos</b>.</div>
+<div class="exemplo">🏡 <b>No dia a dia:</b> se uma criança de outro país chega à sua escola, ela tem os mesmos direitos que você — à educação, por exemplo. Direitos humanos valem para todo mundo, sem exceção.</div>`,
+  palavras:['direitos humanos','Segunda Guerra Mundial (1939–1945)','50 países','Carta das Nações Unidas (1945)','ONU'],
+  qs:[
+   {q:'Segundo o livro, os direitos humanos são garantidos a quem?', o:[
+     {t:'A toda pessoa, independentemente de etnia, origem, cultura, idade, nacionalidade ou religião',ok:1,w:'Isso! Eles valem para todas as pessoas, sem exceção.'},
+     {t:'Só a quem nasceu num dos 50 países que assinaram a Carta',w:'Não. Os direitos humanos valem para toda pessoa, de qualquer nacionalidade.'},
+     {t:'Só aos adultos que trabalham',w:'Idade não importa: crianças também têm direitos humanos, como o direito à educação.'},
+     {t:'Só aos países que venceram a guerra',w:'Os direitos humanos são de toda pessoa, em qualquer lugar.'}]},
+   {q:'Qual acontecimento levou 50 países a se reunirem para fazer um acordo de cooperação?', o:[
+     {t:'O fim da Segunda Guerra Mundial, que deixou milhões de vítimas e cidades destruídas',ok:1,w:'Certo! Eles queriam evitar que o mundo vivesse de novo um conflito assim.'},
+     {t:'A Proclamação da República no Brasil',w:'A República brasileira é de 1889. O acordo veio depois da Segunda Guerra (1945).'},
+     {t:'A assinatura da Lei Áurea',w:'A Lei Áurea (1888) acabou com a escravidão no Brasil. O acordo entre os 50 países veio depois da Segunda Guerra.'},
+     {t:'O fim do apartheid na África do Sul',w:'O apartheid começou em 1948, depois do acordo. O motivo foi o fim da Segunda Guerra Mundial.'}]},
+   {q:'O que foi assinado em 26 de junho de 1945, na Conferência de São Francisco?', o:[
+     {t:'A Carta das Nações Unidas, marco da criação da ONU',ok:1,w:'Muito bem! Foi a Carta das Nações Unidas, assinada pelos 50 países.'},
+     {t:'A Declaração Universal dos Direitos Humanos',w:'Cuidado! A Declaração veio depois, em 1948. Em 1945 foi a Carta das Nações Unidas.'},
+     {t:'A primeira Constituição do Brasil',w:'A primeira Constituição brasileira é de 1824. Em 1945 foi assinada a Carta das Nações Unidas.'},
+     {t:'A Lei do Ventre Livre',w:'Essa lei brasileira é de 1871. Em 1945 foi assinada a Carta das Nações Unidas.'}]}
+  ]},
+{ id:'b2', emoji:'📜', titulo:'Retalho da Declaração', tema:'A Declaração Universal dos Direitos Humanos', pag:'p. 56 e 59', cor:'#8e5bd0',
+  html:`<p>Em <b>1948</b>, a ONU estabeleceu, <b>pela primeira vez</b>, a proteção universal dos direitos humanos por meio da <b>Declaração Universal dos Direitos Humanos</b>. Esse documento tem <b>30 artigos</b>. Veja alguns:</p>
+<div class="regra">✨ Todos os seres humanos <b>nascem livres e iguais</b>.<br>
+✨ Ninguém deve ser mantido em <b>escravidão ou servidão</b>.<br>
+✨ Todos são <b>iguais perante a lei</b> e têm direito à proteção dela.<br>
+✨ Todos têm direito à <b>liberdade de ir e vir</b>.<br>
+✨ Todos têm direito à liberdade de <b>pensamento, consciência e religião</b> e à liberdade de <b>opinião e expressão</b>.<br>
+✨ Todos têm direito de <b>tomar parte das decisões do seu governo</b>.<br>
+✨ Todos têm direito à <b>educação</b>.<br>
+✨ Todos têm <b>deveres com a comunidade</b>.<br>
+✨ Os direitos humanos são <b>universais</b>: todas as pessoas, <b>em todo o mundo</b>, têm direito a eles.</div>
+<p>📅 O dia <b>10 de dezembro</b> é o <b>Dia Internacional dos Direitos Humanos</b>: é a data em que a Declaração foi proclamada, em 1948.</p>
+<p>👶 A <b>UNICEF</b> (Fundo das Nações Unidas para a Infância) foi criada pela ONU em <b>1946</b> para promover os direitos e o bem-estar de <b>crianças e adolescentes</b> no mundo.</p>
+<p class="sub">📎 Curiosidade (p. 60): a Declaração Universal foi inspirada na <b>Declaração dos Direitos do Homem e do Cidadão</b>, feita na França em 1789, durante a Revolução Francesa, cujas ideias eram liberdade, igualdade e fraternidade.</p>
+<div class="exemplo">🏡 <b>Na sua vida:</b> ir à escola (educação), dar sua opinião numa conversa da turma (liberdade de expressão) e passear pela cidade (ir e vir) — tudo isso aparece na Declaração!</div>`,
+  palavras:['Declaração Universal dos Direitos Humanos (1948)','30 artigos','universais','10 de dezembro','UNICEF (1946)'],
+  qs:[
+   {q:'Em que ano a ONU estabeleceu a Declaração Universal dos Direitos Humanos?', o:[
+     {t:'1948',ok:1,w:'Isso! Em 1948, pela primeira vez, a proteção dos direitos humanos virou universal.'},
+     {t:'1945',w:'Em 1945 foi assinada a Carta das Nações Unidas. A Declaração é de 1948.'},
+     {t:'1888',w:'1888 é o ano da Lei Áurea, no Brasil. A Declaração é de 1948.'},
+     {t:'1988',w:'1988 é o ano da Constituição Cidadã. A Declaração é de 1948.'}]},
+   {q:'Quando o livro diz que os direitos humanos são "universais", ele quer dizer que:', o:[
+     {t:'todas as pessoas, em todo o mundo, têm direito a eles',ok:1,w:'Certo! Universal = vale para todos, em qualquer lugar.'},
+     {t:'só valem no país onde a pessoa nasceu',w:'É o contrário: valem em todo o mundo.'},
+     {t:'só valem para quem estuda numa universidade',w:'"Universal" não tem a ver com universidade: quer dizer que vale para todas as pessoas.'},
+     {t:'só valem para os 50 países que assinaram a Carta',w:'Não. Valem para todas as pessoas, em todo o mundo.'}]},
+   {q:'Qual destas frases NÃO combina com a Declaração Universal dos Direitos Humanos?', o:[
+     {t:'"Somente os adultos têm direito à educação."',ok:1,w:'Isso mesmo! A Declaração diz que todos os seres humanos têm direito à educação — crianças também.'},
+     {t:'"Ninguém deve ser mantido em escravidão ou servidão."',w:'Essa frase está, sim, entre os artigos da Declaração.'},
+     {t:'"Todos os seres humanos têm direito à liberdade de ir e vir."',w:'Essa frase está, sim, na Declaração.'},
+     {t:'"Todos os seres humanos têm deveres com a comunidade."',w:'Essa também está na Declaração: além de direitos, temos deveres.'}]}
+  ]},
+{ id:'b3', emoji:'📣', titulo:'Retalho das Vozes', tema:'O movimento abolicionista e as pressões pelo fim da escravidão', pag:'p. 66 a 68', cor:'#e5534b',
+  html:`<p>No Brasil, muitas pessoas se mobilizaram pelo fim da escravidão. Surgiram vários <b>movimentos abolicionistas</b> — ou seja, que lutavam pela <b>extinção da escravidão</b>.</p>
+<p>Esses movimentos eram formados, em geral, por <b>ex-escravizados</b> e <b>profissionais liberais</b> (médicos, advogados, escritores, artistas e jornalistas), muitos deles <b>filhos de escravizados</b>. O livro apresenta vários deles (p. 66 e 67): Maria Firmina dos Reis, Luiz Gama, André Rebouças, Castro Alves e Joaquim Nabuco.</p>
+<p>📰 <b>José do Patrocínio</b> (1853–1905) era filho de uma escravizada alforriada e de um homem livre. Formou-se em <b>Farmácia</b>, mas se dedicou ao <b>jornalismo</b> e foi um dos abolicionistas mais atuantes do Brasil. Fundou o jornal <i>A Cidade do Rio</i> e, com um grupo que incluía André Rebouças, fundou a <b>Confederação Abolicionista</b>, que fez uma grande campanha pelo fim da escravidão.</p>
+<div class="regra">⚖️ <b>Duas forças empurravam o fim da escravidão:</b><br>
+🏠 <b>Pressões internas</b> (de dentro do Brasil): as ações dos <b>abolicionistas</b> e a <b>resistência dos próprios escravizados</b>, que lutavam contra a escravidão.<br>
+🌍 <b>Pressões externas</b> (de fora): a <b>Inglaterra</b> queria vender ao Brasil seus <b>produtos industrializados</b>. Para isso, o Brasil precisava trocar o trabalho escravo pelo <b>trabalho assalariado</b>, o que faria surgir um grande <b>mercado consumidor</b>.</div>
+<p>Assim, a partir do final do século XIX, a escravidão no Brasil foi abolida <b>gradativamente</b> — ou seja, aos poucos, lei por lei.</p>
+<div class="exemplo">🏡 <b>Pense numa loja:</b> se as pessoas não recebem salário, não têm dinheiro para comprar nada. Por isso a Inglaterra queria trabalhadores assalariados no Brasil: gente que pudesse comprar os produtos dela.</div>`,
+  palavras:['abolicionista','José do Patrocínio','Confederação Abolicionista','pressões internas','pressões externas (Inglaterra)','trabalho assalariado'],
+  qs:[
+   {q:'Qual destes é um exemplo de pressão INTERNA pelo fim da escravidão no Brasil?', o:[
+     {t:'A resistência dos próprios escravizados e as ações dos abolicionistas',ok:1,w:'Isso! Pressão interna é a que vinha de dentro do Brasil.'},
+     {t:'O interesse da Inglaterra em vender produtos industrializados',w:'Essa era uma pressão externa: vinha de outro país.'},
+     {t:'A criação da ONU',w:'A ONU só surgiu em 1945, muito depois da abolição (1888).'},
+     {t:'O boicote aos ônibus de Montgomery',w:'Esse boicote aconteceu nos Estados Unidos, em 1955. Não tem relação com a abolição no Brasil.'}]},
+   {q:'Por que a Inglaterra pressionava o Brasil a acabar com a escravidão?', o:[
+     {t:'Porque, com trabalho assalariado, surgiria um grande mercado consumidor para os produtos ingleses',ok:1,w:'Certo! Trabalhador com salário pode comprar — e a Inglaterra queria vender.'},
+     {t:'Porque queria comprar escravizados mais baratos',w:'Não. A Inglaterra queria o fim do trabalho escravo para vender seus produtos.'},
+     {t:'Porque queria que o Brasil virasse uma república',w:'O livro não fala disso. O interesse inglês era formar um mercado consumidor.'},
+     {t:'Porque a Declaração Universal dos Direitos Humanos exigia',w:'A Declaração só surgiu em 1948, depois da abolição. O interesse inglês era vender produtos.'}]},
+   {q:'Qual foi a principal "arma" de José do Patrocínio na luta abolicionista?', o:[
+     {t:'O jornalismo: compartilhava suas opiniões nos jornais e ajudou a fundar a Confederação Abolicionista',ok:1,w:'Muito bem! Ele usou os jornais para fazer campanha pelo fim da escravidão.'},
+     {t:'A farmácia, profissão em que trabalhou a vida toda',w:'Ele se formou em Farmácia, mas se dedicou ao jornalismo.'},
+     {t:'O comando de uma revolta de marinheiros',w:'Quem liderou a revolta dos marinheiros (1910) foi João Cândido.'},
+     {t:'A assinatura da Lei Áurea',w:'Quem assinou a Lei Áurea foi a princesa Isabel.'}]}
+  ]},
+{ id:'b4', emoji:'📃', titulo:'Retalho das Primeiras Leis', tema:'Leis abolicionistas: 1850 e 1871', pag:'p. 68 e 69', cor:'#d99a00',
+  html:`<p class="fala">Tonico: "A escravidão não acabou de uma vez só. Foi lei por lei, como quem costura ponto por ponto. Vamos ver os primeiros pontos?"</p>
+<table class="quadro">
+<tr><td class="ano">1850</td><td>Assinatura da <b>Lei Eusébio de Queirós</b>, que <b>proibiu o tráfico negreiro</b> no Brasil. Mesmo com essa proibição, a escravidão ainda era o <b>principal tipo de mão de obra</b> do Império. Além disso, o <b>comércio interno</b> de escravizados ficou ainda <b>mais intenso e mais caro</b>.</td></tr>
+<tr><td class="ano">1871</td><td>Assinatura da <b>Lei do Ventre Livre</b>, que declarava <b>livre toda criança nascida de uma escravizada</b> a partir da data da lei. <b>Porém</b>, as crianças ficavam sob a autoridade dos senhores de suas mães <b>até os 8 anos</b>. Depois disso, o dono podia receber do governo uma <b>boa quantia em dinheiro</b> para entregar a criança. Se isso não acontecesse, ele podia <b>usar os serviços da criança até ela se tornar adulta, aos 21 anos</b>.</td></tr>
+</table>
+<div class="exemplo">🏡 <b>Entenda o nome:</b> "ventre" é a barriga da mãe. "Ventre Livre" quer dizer que quem nascesse dali em diante seria livre — mas, na prática, muitas crianças continuavam trabalhando para o senhor até os 21 anos.</div>`,
+  palavras:['tráfico negreiro','Lei Eusébio de Queirós (1850)','comércio interno mais caro','Lei do Ventre Livre (1871)','8 anos','21 anos'],
+  qs:[
+   {q:'O que a Lei Eusébio de Queirós, de 1850, proibiu?', o:[
+     {t:'O tráfico negreiro no Brasil',ok:1,w:'Isso! Ela proibiu o tráfico, mas a escravidão continuou.'},
+     {t:'Toda a escravidão no Brasil',w:'Pegadinha! A escravidão continuou. O fim total só veio com a Lei Áurea, em 1888.'},
+     {t:'Os castigos com chibata na Marinha',w:'Os castigos na Marinha foram suspensos só em 1910, com a Revolta da Chibata.'},
+     {t:'A venda de produtos ingleses',w:'Não. A lei de 1850 proibiu o tráfico negreiro.'}]},
+   {q:'Depois da Lei Eusébio de Queirós, o que aconteceu com o comércio interno de escravizados?', o:[
+     {t:'Ficou ainda mais intenso e mais caro',ok:1,w:'Certo! Como não chegavam mais africanos pelo tráfico, o comércio dentro do Brasil cresceu e encareceu.'},
+     {t:'Acabou no mesmo dia',w:'Não acabou: ficou mais intenso e mais caro.'},
+     {t:'Ficou muito mais barato',w:'Foi o contrário: ficou mais caro.'},
+     {t:'Passou a ser controlado pela ONU',w:'A ONU só existiria quase cem anos depois, em 1945.'}]},
+   {q:'Pela Lei do Ventre Livre, uma criança nascida de mãe escravizada logo depois de 1871:', o:[
+     {t:'era considerada livre, mas ficava sob a autoridade do senhor da mãe até os 8 anos e podia ter de trabalhar para ele até os 21',ok:1,w:'Muito bem! Era livre no papel, mas na prática continuava sob o controle do senhor.'},
+     {t:'podia votar a partir dos 16 anos',w:'O voto aos 16 anos só veio com a Constituição de 1988.'},
+     {t:'ficava livre e ia morar sozinha na mesma hora',w:'Não. Ela ficava com o senhor da mãe até os 8 anos, pelo menos.'},
+     {t:'continuava escravizada para sempre',w:'A lei a declarava livre — mas com muitas condições.'}]}
+  ]},
+{ id:'b5', emoji:'🔔', titulo:'Retalho da Liberdade', tema:'Leis abolicionistas: 1884, 1885 e 1888', pag:'p. 69', cor:'#2fa36b',
+  html:`<table class="quadro">
+<tr><td class="ano">1884</td><td><b>Abolição da escravidão no Ceará, no Amazonas e no Rio Grande do Sul.</b><br>🌊 No <b>Ceará</b>, a abolição veio depois de <b>três anos de luta</b> envolvendo <b>jangadeiros, pescadores, trabalhadores negros livres e libertos</b>.<br>📰 No <b>Amazonas</b> e no <b>Rio Grande do Sul</b>, veio depois de uma intensa <b>campanha popular e jornalística</b>. Nessas regiões, a resistência dos escravocratas foi <b>menor</b>, porque muitos fazendeiros não tinham recursos para comprar escravizados, que ficaram <b>mais caros</b> depois da proibição do tráfico negreiro.</td></tr>
+<tr><td class="ano">1885</td><td><b>Lei dos Sexagenários</b>: toda pessoa escravizada com <b>mais de 60 anos</b> se tornaria livre. <b>Porém</b>, por causa dos <b>maus-tratos</b>, <b>poucos chegavam a essa idade</b>. Além disso, a lei exigia que, depois de completar 60 anos, os escravizados trabalhassem <b>mais três anos</b> como forma de <b>indenização</b>. Os que conseguiam cumprir isso acabavam <b>abandonados</b> e, já idosos, sem condições de se manter sozinhos.</td></tr>
+<tr><td class="ano">1888</td><td>Assinatura da <b>Lei Áurea</b>, pela <b>princesa Isabel</b>, que decretou a <b>abolição da escravidão em todo o Brasil</b>. Ela foi assinada por causa das <b>pressões internas</b> do movimento abolicionista, que fez uma intensa campanha na sociedade, e também das <b>pressões de outros países</b>, como a <b>Inglaterra</b>.</td></tr>
+</table>
+<div class="exemplo">🧠 <b>Dica de memória:</b> SEXAgenários lembra SESSENTA (mais de 60 anos). E a Áurea foi a última lei: a que acabou com a escravidão em todo o país.</div>`,
+  palavras:['1884: Ceará, Amazonas e Rio Grande do Sul','jangadeiros','Lei dos Sexagenários (1885)','indenização','Lei Áurea (1888)','princesa Isabel'],
+  qs:[
+   {q:'Em 1884, a escravidão acabou em três lugares do Brasil. Quais?', o:[
+     {t:'Ceará, Amazonas e Rio Grande do Sul',ok:1,w:'Isso! No Ceará, depois de três anos de luta; no Amazonas e no Rio Grande do Sul, com campanha popular e jornalística.'},
+     {t:'Bahia, Maranhão e Piauí',w:'Não são esses. Em 1884 foram Ceará, Amazonas e Rio Grande do Sul.'},
+     {t:'São Paulo, Minas Gerais e Rio de Janeiro',w:'Não. Em 1884 foram Ceará, Amazonas e Rio Grande do Sul.'},
+     {t:'Pará, Amapá e Roraima',w:'Não. Em 1884 foram Ceará, Amazonas e Rio Grande do Sul.'}]},
+   {q:'Por que a Lei dos Sexagenários libertou pouquíssimas pessoas?', o:[
+     {t:'Por causa dos maus-tratos, poucos escravizados chegavam aos 60 anos — e ainda tinham de trabalhar mais 3 anos',ok:1,w:'Certo! Uma lei que parecia boa, mas quase ninguém conseguia usar.'},
+     {t:'Porque ela só valia para crianças',w:'Quem tratava das crianças era a Lei do Ventre Livre (1871).'},
+     {t:'Porque foi cancelada no dia seguinte',w:'O livro não diz isso. O problema era que poucos chegavam aos 60 anos.'},
+     {t:'Porque valia só no Ceará',w:'Não. O problema era a idade: poucos chegavam aos 60, por causa dos maus-tratos.'}]},
+   {q:'Quem assinou a Lei Áurea, em 1888, e o que ela decretou?', o:[
+     {t:'A princesa Isabel; a abolição da escravidão em todo o Brasil',ok:1,w:'Muito bem! A Lei Áurea acabou com a escravidão em todo o país.'},
+     {t:'A princesa Isabel; somente o fim do tráfico negreiro',w:'O tráfico já tinha sido proibido em 1850, pela Lei Eusébio de Queirós.'},
+     {t:'Deodoro da Fonseca; a Proclamação da República',w:'Deodoro proclamou a República em 1889. A Lei Áurea foi assinada pela princesa Isabel.'},
+     {t:'D. Pedro I; a liberdade dos maiores de 60 anos',w:'A liberdade dos maiores de 60 anos foi a Lei dos Sexagenários (1885). A Lei Áurea foi assinada pela princesa Isabel.'}]}
+  ]},
+{ id:'b6', emoji:'🏚️', titulo:'Retalho Remendado', tema:'A cidadania negada aos ex-escravizados na República', pag:'p. 70', cor:'#a0522d',
+  html:`<p>Durante muito tempo, o Brasil foi uma <b>monarquia</b>: um governo exercido por um <b>rei ou uma rainha</b>, em que o direito de governar passa para os <b>descendentes</b>.</p>
+<p>Na <b>década de 1880</b>, comerciantes, jornalistas, políticos e militares estavam muito descontentes com essa forma de governo: queriam <b>maior participação política</b>. E os grandes <b>fazendeiros escravocratas</b>, que perderam sua principal mão de obra com o fim da escravidão em <b>1888</b>, <b>deixaram de apoiar a Coroa</b>.</p>
+<div class="regra">📌 <b>15 de novembro de 1889</b> — pouco mais de um ano depois da abolição, o <b>marechal Deodoro da Fonseca</b>, com o apoio de tropas do Exército, <b>proclamou a República</b> no Brasil e se tornou o <b>primeiro presidente</b> do país.</div>
+<p>⚠️ <b>Mas e os ex-escravizados?</b> Muitos <b>não tiveram acesso aos direitos básicos</b> que garantiriam a <b>cidadania</b>: <b>moradia, educação, saúde e trabalho assalariado</b>. Muitos foram para os centros urbanos e passaram a morar em <b>habitações precárias</b>, como os <b>cortiços</b>.</p>
+<p>Embora boa parte da população concordasse com o fim da escravidão, a <b>discriminação racial continuou</b>, e os negros foram cada vez mais <b>excluídos</b> da sociedade. Industriais, comerciantes e agricultores preferiram empregar <b>imigrantes europeus</b> em vez de ex-escravizados.</p>
+<div class="exemplo">🏡 <b>Imagine:</b> ganhar a chave da porta, mas não ter casa, escola, médico nem emprego. A liberdade chegou, mas a cidadania não veio junto. Por isso este retalho é "remendado".</div>`,
+  palavras:['monarquia','fazendeiros escravocratas','República (15/11/1889)','Deodoro da Fonseca','cidadania','cortiços','discriminação racial','imigrantes europeus'],
+  qs:[
+   {q:'Por que os grandes fazendeiros escravocratas deixaram de apoiar a monarquia?', o:[
+     {t:'Porque perderam sua principal mão de obra com o fim da escravidão, em 1888',ok:1,w:'Isso! Sem o apoio deles, a monarquia ficou fraca, e a República veio em 1889.'},
+     {t:'Porque o rei proibiu a produção nas fazendas',w:'O livro não diz isso. Eles se afastaram porque perderam a mão de obra escravizada.'},
+     {t:'Porque queriam votar a partir dos 16 anos',w:'O voto aos 16 anos é da Constituição de 1988.'},
+     {t:'Porque a ONU pediu',w:'A ONU só surgiu em 1945.'}]},
+   {q:'Quem proclamou a República no Brasil, em 15 de novembro de 1889, e se tornou o primeiro presidente?', o:[
+     {t:'O marechal Deodoro da Fonseca',ok:1,w:'Certo! Com o apoio de tropas do Exército.'},
+     {t:'A princesa Isabel',w:'A princesa Isabel assinou a Lei Áurea (1888). Quem proclamou a República foi Deodoro da Fonseca.'},
+     {t:'João Cândido',w:'João Cândido liderou a Revolta da Chibata, em 1910.'},
+     {t:'José Sarney',w:'José Sarney governou muito depois, na transição para a democracia, nos anos 1980.'}]},
+   {q:'Como o livro descreve a vida de muitos ex-escravizados depois da abolição?', o:[
+     {t:'Sem acesso a moradia, educação, saúde e trabalho assalariado; muitos moravam em cortiços',ok:1,w:'Muito bem! A cidadania foi negada a eles.'},
+     {t:'Receberam terras e salário do governo',w:'Não. Eles ficaram sem direitos básicos.'},
+     {t:'Foram os preferidos dos patrões para os empregos',w:'Pegadinha! Os patrões preferiram empregar imigrantes europeus.'},
+     {t:'Passaram a ter os mesmos direitos de todos imediatamente',w:'Não. A discriminação racial continuou e os negros foram cada vez mais excluídos.'}]}
+  ]},
+{ id:'b7', emoji:'⚓', titulo:'Retalho do Mar', tema:'A revolta contra a violência: Revolta da Chibata', pag:'p. 71 e 72', cor:'#1f5fa8',
+  html:`<p>Em busca de trabalho e de melhores condições de vida, muitos <b>ex-escravizados</b> entraram na <b>Marinha</b>, na cidade do <b>Rio de Janeiro</b>.</p>
+<p>A esquadra brasileira era uma das <b>mais modernas do mundo</b>, com navios importados da Inglaterra. Mas os marinheiros, em sua <b>maioria negros</b>, sofriam <b>castigos físicos e de isolamento</b> que lembravam a escravidão, e eram alimentados com <b>pão e água</b>.</p>
+<div class="regra">⚓ <b>Novembro de 1910</b> — um marinheiro foi condenado a <b>250 chibatadas</b> (golpes de chicote). O castigo cruel o levou à <b>morte</b>.<br>
+➡️ Então, <b>2 300 homens</b>, liderados pelo marinheiro <b>João Cândido</b>, começaram um movimento de resistência que durou <b>quatro dias</b>: a <b>Revolta da Chibata</b>.<br>
+➡️ Eles tomaram <b>cinco navios de guerra</b> e escreveram um <b>manifesto em forma de carta</b> ao governo.<br>
+➡️ Exigiram o <b>fim dos castigos corporais</b> e a <b>anistia</b> (o perdão depois do fim da revolta). Se não fossem atendidos, estavam dispostos a <b>bombardear com canhões</b> o Rio de Janeiro, que era a capital do Brasil.</div>
+<p><b>Como terminou?</b> O governo <b>aceitou as exigências</b>, mas, dias depois do fim da revolta, começou a <b>reprimir</b> os participantes: os líderes foram <b>presos</b> e sofreram castigos físicos, alguns foram condenados a <b>trabalho forçado</b>, cerca de <b>2 mil marinheiros foram expulsos</b> da Marinha e dezenas foram mortos. <b>João Cândido foi preso</b> e libertado dois anos depois.</p>
+<p class="sub">📎 O livro resume (p. 85): mesmo com o fim da escravidão, a Marinha manteve os castigos físicos aos marinheiros negros até 1910, quando, com a Revolta da Chibata, os castigos foram suspensos.</p>`,
+  palavras:['Marinha','chibatadas','João Cândido','Revolta da Chibata (1910)','manifesto em forma de carta','anistia'],
+  qs:[
+   {q:'O que os marinheiros exigiram na Revolta da Chibata?', o:[
+     {t:'O fim dos castigos corporais e a anistia para quem participou da revolta',ok:1,w:'Isso! Eles queriam acabar com as chibatadas e não ser punidos depois.'},
+     {t:'A proclamação da República',w:'A República já existia desde 1889. A revolta foi em 1910.'},
+     {t:'O direito de voto para as mulheres',w:'Não foi isso. Eles exigiram o fim dos castigos corporais e a anistia.'},
+     {t:'Navios novos vindos da Inglaterra',w:'Os navios já eram modernos. Eles exigiram o fim dos castigos e a anistia.'}]},
+   {q:'Como os marinheiros apresentaram suas reivindicações ao governo?', o:[
+     {t:'Tomaram cinco navios de guerra e escreveram um manifesto em forma de carta',ok:1,w:'Certo! E ameaçaram bombardear o Rio de Janeiro se não fossem atendidos.'},
+     {t:'Fizeram um boicote aos ônibus da cidade',w:'O boicote aos ônibus aconteceu em Montgomery, nos Estados Unidos, em 1955.'},
+     {t:'Organizaram o movimento Diretas Já',w:'As Diretas Já aconteceram nos anos 1980.'},
+     {t:'Pediram ajuda à ONU',w:'A ONU só foi criada em 1945.'}]},
+   {q:'Qual foi o desfecho (o final) da Revolta da Chibata?', o:[
+     {t:'O governo aceitou as exigências, mas dias depois prendeu, castigou e expulsou muitos marinheiros',ok:1,w:'Muito bem! Cerca de 2 mil foram expulsos, e João Cândido ficou preso por dois anos.'},
+     {t:'Os marinheiros bombardearam o Rio de Janeiro',w:'O bombardeio era só uma ameaça. O governo aceitou as exigências antes.'},
+     {t:'João Cândido virou presidente do Brasil',w:'Não. João Cândido foi preso e só foi libertado dois anos depois.'},
+     {t:'Todos os marinheiros ganharam medalhas e promoções',w:'Foi o contrário: houve repressão, prisões e expulsões.'}]}
+  ]},
+{ id:'b8', emoji:'🚌', titulo:'Retalho do Ônibus', tema:'Segregação racial nos EUA: Rosa Parks e Martin Luther King', pag:'p. 73 a 75', cor:'#e07a1f',
+  html:`<p>Mesmo depois de muitas conquistas de cidadania, alguns países mantiveram <b>leis que segregavam</b> (separavam) os <b>negros</b> dos <b>brancos</b>. As pessoas negras eram impedidas de frequentar <b>escolas, praças e banheiros públicos</b> reservados às brancas, de usar certos <b>bebedouros</b> e de ir a determinadas praias, restaurantes e clubes. E os lugares reservados aos negros eram mantidos em <b>condições precárias</b>.</p>
+<div class="caixa">📖 <b>Segregar:</b> separar, isolar, afastar. · <b>Ativista:</b> pessoa que trabalha com muito empenho por uma causa política, humanitária ou ambiental.</div>
+<p>Nos <b>Estados Unidos</b>, alguns estados do <b>sul</b> tinham leis segregacionistas.</p>
+<p>👩🏾 <b>Rosa Parks</b> nasceu em 1913, no estado do <b>Alabama</b>. Era <b>costureira</b>. No fim do dia <b>1º de dezembro de 1955</b>, na cidade de <b>Montgomery</b>, ela voltava do trabalho de <b>ônibus</b>, sentada na fileira permitida aos negros. O ônibus lotou, e o motorista mudou a placa <i>colored</i> ("pessoa de cor") para trás da fileira dela, exigindo que os passageiros negros cedessem os lugares aos brancos. Os outros três se levantaram, mas <b>Rosa Parks se recusou</b>. A polícia foi chamada e ela foi <b>presa</b>. Foi solta no dia seguinte, depois de pagar fiança, e sua atitude chamou a atenção da comunidade negra, que já lutava pelos <b>direitos civis</b>.</p>
+<div class="regra">✊🏾 <b>Martin Luther King</b> era pastor da Igreja Batista e defendia a <b>desobediência civil</b>: lutar por direitos <b>sem usar violência</b>, não obedecendo a leis que violassem os direitos humanos.<br>
+➡️ <b>Três dias</b> depois da prisão de Rosa Parks, ele organizou um <b>boicote aos ônibus</b> de Montgomery, até que a lei que separava negros e brancos no transporte público foi declarada <b>inconstitucional</b>.<br>
+🏅 Ganhou o <b>Prêmio Nobel da Paz em 1964</b>. Também lutou pelo <b>direito ao voto</b> dos negros nos Estados Unidos.</div>
+<div class="caixa">📖 <b>Boicote:</b> protesto em que se evita usar ou comprar um produto ou serviço. · <b>Inconstitucional:</b> que está em desacordo com as leis de um país e viola os direitos dos cidadãos.</div>`,
+  palavras:['segregar','ativista','Rosa Parks (1955, Montgomery)','Martin Luther King','desobediência civil','boicote','inconstitucional'],
+  qs:[
+   {q:'O que significa "segregar"?', o:[
+     {t:'Separar, isolar, afastar',ok:1,w:'Isso! As leis segregacionistas separavam negros e brancos.'},
+     {t:'Juntar e misturar',w:'É o contrário: segregar é separar.'},
+     {t:'Perdoar depois de uma revolta',w:'Perdão depois de uma revolta é anistia. Segregar é separar.'},
+     {t:'Proteger com uma lei',w:'Segregar é separar, isolar, afastar.'}]},
+   {q:'O que Rosa Parks fez em 1º de dezembro de 1955, em Montgomery?', o:[
+     {t:'Recusou-se a ceder seu lugar no ônibus a um passageiro branco e foi presa',ok:1,w:'Certo! Uma atitude corajosa que virou símbolo da luta pelos direitos civis.'},
+     {t:'Organizou um boicote aos ônibus da cidade',w:'Quem organizou o boicote, três dias depois, foi Martin Luther King.'},
+     {t:'Ganhou o Prêmio Nobel da Paz',w:'Quem ganhou o Nobel em 1964 foi Martin Luther King.'},
+     {t:'Liderou uma revolta de marinheiros',w:'A revolta de marinheiros foi a da Chibata, no Brasil, liderada por João Cândido.'}]},
+   {q:'A "desobediência civil", defendida por Martin Luther King, é:', o:[
+     {t:'lutar por direitos sem violência, não obedecendo a leis que violam os direitos humanos',ok:1,w:'Muito bem! Foi assim que o boicote aos ônibus derrubou a lei de segregação.'},
+     {t:'ameaçar a cidade com canhões até ser atendido',w:'Ameaçar com canhões foi o que fizeram os marinheiros da Revolta da Chibata. King defendia lutar sem violência.'},
+     {t:'obedecer a todas as leis sem reclamar',w:'Não. Era desobedecer a leis injustas — mas sem violência.'},
+     {t:'fugir do país para outro lugar',w:'Não. Era resistir sem violência, desobedecendo a leis injustas.'}]}
+  ]},
+{ id:'b9', emoji:'🌍', titulo:'Retalho da África do Sul', tema:'O apartheid e Nelson Mandela', pag:'p. 76', cor:'#b8860b',
+  html:`<p>Na <b>África do Sul</b> também existiam leis que separavam negros e brancos. Essas leis formavam uma política chamada <b>apartheid</b>, palavra que significa <b>"separação"</b>.</p>
+<p>Elas foram criadas em <b>1948</b> pelo governo sul-africano, formado <b>somente por brancos</b>, e determinavam que as <b>melhores</b> escolas, praças e bairros eram para os brancos, enquanto os negros ficavam em espaços <b>mais precários</b>.</p>
+<div class="regra">✊🏿 <b>Nelson Mandela</b> foi um <b>advogado</b> que lutou contra o apartheid.<br>
+➡️ <b>1962</b>: foi preso e condenado à <b>prisão perpétua</b>, acusado de traição e conspiração contra o governo.<br>
+➡️ Passou <b>27 anos</b> na prisão, até ser solto em <b>1990</b>, depois de uma grande mobilização internacional.<br>
+➡️ Livre, aos <b>72 anos</b>, atuou como <b>mediador</b> entre o governo e a população negra.<br>
+🏅 Ganhou o <b>Prêmio Nobel da Paz em 1993</b> e, <b>no ano seguinte</b>, foi eleito o <b>primeiro presidente negro</b> da África do Sul.<br>
+➡️ Continuou lutando contra o preconceito racial e a favor dos direitos humanos até o fim da vida, em <b>2013</b>.</div>
+<p class="sub">📎 Ampliando: o nome de batismo dele era <b>Rolihlahla</b>. Passou a ser chamado de Nelson na escola, e depois também de <b>Madiba</b> (nome do clã) e <b>Tata</b> (que significa "pai").</p>
+<div class="exemplo">🧠 <b>Não confunda:</b> Rosa Parks e Luther King → Estados Unidos (ônibus). Mandela → África do Sul (apartheid). O que os três têm em comum: lutaram contra a segregação racial.</div>`,
+  palavras:['apartheid = "separação"','1948','Nelson Mandela','27 anos de prisão','Nobel da Paz (1993)','primeiro presidente negro'],
+  qs:[
+   {q:'O que significa a palavra apartheid?', o:[
+     {t:'"Separação"',ok:1,w:'Isso! Eram leis que separavam negros e brancos na África do Sul.'},
+     {t:'"Liberdade"',w:'Não. Apartheid quer dizer "separação".'},
+     {t:'"Paz"',w:'Não. Apartheid quer dizer "separação".'},
+     {t:'"Pai"',w:'"Pai" é o significado de Tata, um dos apelidos de Mandela. Apartheid quer dizer "separação".'}]},
+   {q:'Por que Nelson Mandela foi preso em 1962?', o:[
+     {t:'Foi acusado de traição e conspiração contra o governo, por lutar contra o apartheid',ok:1,w:'Certo! Ele foi condenado à prisão perpétua e ficou 27 anos preso.'},
+     {t:'Porque se recusou a ceder seu lugar num ônibus',w:'Essa foi Rosa Parks, nos Estados Unidos.'},
+     {t:'Porque liderou uma revolta de marinheiros',w:'Essa foi a Revolta da Chibata, no Brasil, com João Cândido.'},
+     {t:'Porque não pagou impostos ao rei',w:'Não. Ele foi preso por sua luta contra o apartheid.'}]},
+   {q:'O que aconteceu com Mandela depois de ser solto, em 1990?', o:[
+     {t:'Ganhou o Nobel da Paz em 1993 e, no ano seguinte, foi eleito o primeiro presidente negro da África do Sul',ok:1,w:'Muito bem! Ele também atuou como mediador entre o governo e a população negra.'},
+     {t:'Voltou para a prisão logo em seguida',w:'Não. Ele virou mediador, ganhou o Nobel e foi eleito presidente.'},
+     {t:'Mudou-se para os Estados Unidos e organizou o boicote aos ônibus',w:'O boicote foi organizado por Martin Luther King, em 1955.'},
+     {t:'Criou o apartheid',w:'Pelo contrário! Mandela lutou contra o apartheid, criado em 1948.'}]}
+  ]},
+{ id:'b10', emoji:'📘', titulo:'Retalho da Lei Maior', tema:'O que é uma Constituição', pag:'p. 88 e 89', cor:'#14a3b8',
+  html:`<p class="fala">Tonico: "Agora a colcha muda de tecido: vamos costurar a história da cidadania no Brasil!"</p>
+<p>A cidadania no Brasil tem uma longa história, porque o país passou por períodos de <b>regimes autoritários</b> e de <b>regimes democráticos</b>.</p>
+<div class="comp">
+<div class="col" style="--c:#e5534b"><h4>⛔ Regime AUTORITÁRIO</h4><ul><li>A população tem <b>pouca participação política</b></li><li>O governo usa <b>repressão</b> e <b>censura</b> para se manter no poder</li></ul></div>
+<div class="col" style="--c:#2fa36b"><h4>✅ Regime DEMOCRÁTICO</h4><ul><li>A população tem seus <b>direitos políticos, sociais e civis</b> garantidos</li><li>Exemplos: <b>votar</b>, <b>expressar-se livremente</b>, <b>reivindicar direitos</b></li></ul></div>
+</div>
+<div class="regra">📘 <b>O que é uma Constituição?</b> É o <b>conjunto de leis maiores</b> de um país. Nela são definidas, por exemplo: a <b>forma de governo</b>, a <b>organização e a divisão dos poderes</b> políticos e as leis dos <b>direitos e deveres</b> dos cidadãos.</div>
+<p>A <b>Constituição Federal de 1988</b> é a nossa Constituição atual. Ela define o Brasil como uma <b>República Presidencialista</b>, com presidente escolhido por <b>eleições diretas</b> — por isso o Brasil é um país <b>democrático</b>. Os poderes são <b>divididos e independentes</b>: <b>Executivo, Legislativo e Judiciário</b>. E o texto traz todos os direitos civis, políticos e sociais dos brasileiros.</p>
+<p>Antes da de 1988, o Brasil teve <b>outras seis Constituições</b>. A de 1988 foi promulgada em <b>5 de outubro de 1988</b>.</p>
+<div class="exemplo">🏡 <b>Compare:</b> a sua escola tem um regulamento que vale para todos. A Constituição é como o "regulamento maior" do país inteiro: as leis maiores, com os direitos e deveres de todos os cidadãos.</div>`,
+  palavras:['Constituição = conjunto de leis maiores','regime autoritário','regime democrático','República Presidencialista','Executivo, Legislativo e Judiciário','seis Constituições antes de 1988'],
+  qs:[
+   {q:'Para o livro, o que é uma Constituição?', o:[
+     {t:'O conjunto de leis maiores de um país, que define a forma de governo, a divisão dos poderes e os direitos e deveres dos cidadãos',ok:1,w:'Isso! É a lei mais importante do país.'},
+     {t:'Uma lista com os nomes dos candidatos de uma eleição',w:'Não. A Constituição é o conjunto de leis maiores do país.'},
+     {t:'Um jornal oficial do governo',w:'Não. A Constituição é o conjunto de leis maiores do país.'},
+     {t:'O acordo assinado por 50 países em 1945',w:'Esse acordo é a Carta das Nações Unidas.'}]},
+   {q:'Um governo que dá pouca participação política ao povo e usa repressão e censura é um regime:', o:[
+     {t:'autoritário',ok:1,w:'Certo! No regime democrático, ao contrário, os direitos são garantidos.'},
+     {t:'democrático',w:'No regime democrático o povo vota, se expressa e reivindica direitos.'},
+     {t:'universal',w:'"Universal" é o que vale para todos — como os direitos humanos.'},
+     {t:'presidencialista',w:'Presidencialista diz respeito a ter um presidente. O regime com repressão e censura é o autoritário.'}]},
+   {q:'Pela Constituição de 1988, quais são os poderes políticos, divididos e independentes?', o:[
+     {t:'Executivo, Legislativo e Judiciário',ok:1,w:'Muito bem! São três poderes independentes entre si.'},
+     {t:'Executivo, Legislativo e Moderador',w:'O Poder Moderador era da Constituição de 1824, do tempo do Império. Hoje são Executivo, Legislativo e Judiciário.'},
+     {t:'Moderador, Judiciário e Militar',w:'Não. Hoje são Executivo, Legislativo e Judiciário.'},
+     {t:'Rei, Rainha e Príncipe',w:'Isso seria uma monarquia. O Brasil hoje é uma República Presidencialista.'}]}
+  ]},
+{ id:'b11', emoji:'👑', titulo:'Retalho da Coroa', tema:'A primeira Constituição do Brasil e o Poder Moderador', pag:'p. 92 e 93', cor:'#b5478a',
+  html:`<p>Em <b>1824</b>, dois anos depois da independência (1822), foi elaborada a <b>primeira Constituição brasileira</b>, por <b>imposição de D. Pedro I</b>.</p>
+<p>Ela atendia aos interesses da <b>elite local</b>, que apoiava o imperador: <b>manteve a escravidão</b> e <b>excluiu</b> a maioria da população da participação política.</p>
+<div class="caixa">📖 <b>Outorgar:</b> impor algo de acordo com a vontade de uma pessoa ou de um grupo. A Constituição de 1824 foi <b>outorgada</b> por D. Pedro I.</div>
+<div class="regra">👑 <b>O Poder Moderador:</b> para garantir que seus poderes fossem <b>absolutos</b>, D. Pedro I criou o <b>Poder Moderador</b>, que podia <b>interferir nos poderes Executivo, Legislativo e Judiciário</b>.</div>
+<table class="quadro">
+<tr><td class="ano">Legislativo</td><td>Deputados e senadores: <b>elaboravam as leis</b>.</td></tr>
+<tr><td class="ano">Executivo</td><td>Imperador, ministros e presidentes das províncias: <b>executavam as leis</b>.</td></tr>
+<tr><td class="ano">Judiciário</td><td>Juízes: <b>interpretação e cumprimento</b> das leis.</td></tr>
+<tr><td class="ano">Moderador</td><td><b>Somente o imperador</b>: podia <b>interferir nos outros três</b> poderes.</td></tr>
+</table>
+<p>🗳️ <b>Quem votava em 1824?</b> Só os <b>homens livres</b>, com <b>mais de 25 anos</b> e com uma <b>renda anual alta</b>. Por isso, grande parte da população ficava de fora. As listas de eleitores eram fixadas nas portas das igrejas e os votos iam para <b>urnas de madeira</b> — mas havia gritaria, ameaças e <b>fraudes</b>.</p>
+<p>Por usar o Poder Moderador de forma autoritária, D. Pedro I perdeu o apoio dos deputados e até da elite. Em <b>1831</b>, voltou para Portugal e deixou o filho, de 5 anos, como herdeiro do trono (D. Pedro II).</p>`,
+  palavras:['Constituição de 1824','D. Pedro I','outorgada','Poder Moderador','elite local','voto: homens livres, +25 anos, renda alta'],
+  qs:[
+   {q:'A Constituição de 1824 foi "outorgada". O que isso significa?', o:[
+     {t:'Que foi imposta pela vontade de D. Pedro I',ok:1,w:'Isso! Outorgar é impor algo pela vontade de uma pessoa ou grupo.'},
+     {t:'Que foi votada por toda a população',w:'Não. A maioria da população nem participava da política.'},
+     {t:'Que foi escrita pela ONU',w:'A ONU só surgiu em 1945.'},
+     {t:'Que foi feita por uma Assembleia Nacional Constituinte',w:'Uma Assembleia Nacional Constituinte elaborou a Constituição de 1988. A de 1824 foi imposta pelo imperador.'}]},
+   {q:'O que o Poder Moderador permitia ao imperador?', o:[
+     {t:'Interferir nos poderes Executivo, Legislativo e Judiciário',ok:1,w:'Certo! Assim os poderes de D. Pedro I ficavam absolutos.'},
+     {t:'Apenas assinar as leis abolicionistas',w:'Não. O Poder Moderador deixava o imperador interferir nos outros três poderes.'},
+     {t:'Nada: era um poder só de enfeite',w:'Pelo contrário: era o poder que garantia ao imperador poderes absolutos.'},
+     {t:'Elaborar as leis junto com o povo',w:'Quem elaborava as leis eram os deputados e senadores (Legislativo).'}]},
+   {q:'Pela Constituição de 1824, quem podia votar?', o:[
+     {t:'Só os homens livres, com mais de 25 anos e renda anual alta',ok:1,w:'Muito bem! Por isso grande parte da população ficava de fora.'},
+     {t:'Todos os brasileiros maiores de 16 anos',w:'Isso só aconteceu com a Constituição de 1988.'},
+     {t:'Homens e mulheres de qualquer renda',w:'Não. Mulheres não votavam, e era preciso ter renda alta.'},
+     {t:'Os escravizados e os libertos',w:'Não. A Constituição de 1824 manteve a escravidão e excluía a maioria da população.'}]}
+  ]},
+{ id:'b12', emoji:'🗳️', titulo:'Retalho Cidadão', tema:'A volta da democracia e a Constituição Cidadã', pag:'p. 106 e 107', cor:'#2f9e44',
+  html:`<p>Entre <b>1964 e 1985</b>, o Brasil foi governado pelos <b>militares</b>, com autoritarismo, repressão e censura. Mesmo assim, vários grupos reivindicavam <b>liberdade de expressão</b> e <b>direitos políticos</b>.</p>
+<div class="regra">📣 <b>Diretas Já</b> — movimento popular que ganhou força a partir da <b>década de 1980</b>. Reivindicava o <b>retorno à democracia</b>, principalmente o <b>direito de eleger o presidente</b>. Milhares de brasileiros participaram de discussões, debates e passeatas.</div>
+<p>A pressão popular levou ao <b>fim do regime militar</b>, mas a população ainda não pôde votar para presidente: houve uma <b>eleição indireta</b>, que elegeu <b>Tancredo Neves</b>. Ele adoeceu e faleceu antes de governar, e quem assumiu foi o vice, <b>José Sarney</b>, responsável por terminar a transição para a democracia. Nesse período, foi aprovada a <b>Constituição de 1988</b>.</p>
+<div class="regra">🗳️ <b>Constituição de 1988 = Constituição Cidadã</b><br>
+➡️ Elaborada por uma <b>Assembleia Nacional Constituinte</b>.<br>
+➡️ Foi a <b>primeira vez</b> na história do Brasil que uma Constituição <b>ampliou os direitos dos cidadãos sem qualquer forma de exclusão</b>.<br>
+➡️ <b>Voto universal</b>: todos os brasileiros <b>maiores de 16 anos</b> podem votar — inclusive os <b>analfabetos</b>, que ficaram excluídos por muito tempo.<br>
+➡️ Incluiu os <b>direitos dos indígenas</b> e das <b>comunidades quilombolas</b>.</div>
+<p>Alguns direitos da Constituição de 1988: <b>liberdade de pensamento, expressão e crença</b>; acesso à <b>educação e à saúde pública</b> de qualidade; <b>combate ao racismo</b>.</p>
+<p>💻 Nas eleições, usam-se <b>urnas eletrônicas</b> desde <b>1996</b>; a partir de <b>2020</b>, a <b>biometria</b> (cadastro da digital do eleitor) impede que outra pessoa vote no lugar dele.</p>`,
+  palavras:['Diretas Já','Tancredo Neves e José Sarney','Assembleia Nacional Constituinte','Constituição Cidadã (1988)','voto universal (16 anos)','indígenas e quilombolas'],
+  qs:[
+   {q:'Por que a Constituição de 1988 é chamada de Constituição Cidadã?', o:[
+     {t:'Porque, pela primeira vez, uma Constituição ampliou os direitos dos cidadãos sem qualquer forma de exclusão',ok:1,w:'Isso! Ela incluiu até grupos excluídos por muito tempo, como os analfabetos.'},
+     {t:'Porque foi outorgada pelo imperador',w:'Outorgada pelo imperador foi a de 1824.'},
+     {t:'Porque só os cidadãos ricos podiam votar',w:'Isso acontecia em 1824. Em 1988 o voto ficou universal.'},
+     {t:'Porque criou o Poder Moderador',w:'O Poder Moderador era da Constituição de 1824.'}]},
+   {q:'Com a Constituição de 1988, o voto ficou universal. Isso quer dizer que:', o:[
+     {t:'todos os brasileiros maiores de 16 anos podem votar, inclusive os analfabetos',ok:1,w:'Certo! Ninguém fica de fora por ser analfabeto.'},
+     {t:'só os homens alfabetizados podem votar',w:'Não. O voto universal inclui todos os brasileiros maiores de 16 anos.'},
+     {t:'só votam os maiores de 25 anos com renda alta',w:'Essa era a regra de 1824.'},
+     {t:'o presidente é escolhido sem a participação do povo',w:'Isso é eleição indireta. Hoje o presidente é escolhido por eleições diretas.'}]},
+   {q:'O que o movimento Diretas Já reivindicava?', o:[
+     {t:'A volta da democracia, principalmente o direito de eleger o presidente',ok:1,w:'Muito bem! Milhares de brasileiros foram às ruas por isso.'},
+     {t:'A volta da monarquia',w:'Não. Eles queriam a democracia e eleições diretas para presidente.'},
+     {t:'O fim do tráfico negreiro',w:'O tráfico negreiro foi proibido em 1850.'},
+     {t:'A criação do Poder Moderador',w:'O Poder Moderador era do tempo do Império (1824).'}]}
+  ]},
+{ id:'b13', emoji:'🧵', titulo:'Arremate da Colcha', tema:'Revisão geral: tudo misturado', pag:'Unidades 9 e 10', cor:'#6b4fd6',
+  html:`<p class="fala">Tonico: "Hora do arremate! É o último ponto da costura: perguntas que misturam todos os retalhos. Se errar, leia a explicação e lembre em qual retalho estava."</p>
+<div class="exemplo">🧵 <b>A colcha inteira em uma frase:</b> as pessoas lutaram muito — contra a escravidão, contra a violência e contra a segregação — para conquistar direitos; e a Constituição Cidadã de 1988, assim como a Declaração Universal de 1948, garante direitos a todos, sem exclusão.</div>`,
+  palavras:['1850 → 1871 → 1884 → 1885 → 1888','1889 República','1910 Chibata','1945 ONU · 1948 Declaração','1824 Moderador · 1988 Cidadã'],
+  qs:[
+   {q:'Qual sequência está na ordem certa, da mais antiga para a mais recente?', o:[
+     {t:'Lei Eusébio de Queirós → Lei do Ventre Livre → Lei dos Sexagenários → Lei Áurea',ok:1,w:'Isso! 1850 → 1871 → 1885 → 1888.'},
+     {t:'Lei do Ventre Livre → Lei Eusébio de Queirós → Lei Áurea → Lei dos Sexagenários',w:'A Eusébio de Queirós (1850) veio antes do Ventre Livre (1871), e a Áurea (1888) foi a última.'},
+     {t:'Lei Áurea → Lei dos Sexagenários → Lei do Ventre Livre → Lei Eusébio de Queirós',w:'Está de trás para a frente: a Áurea (1888) foi a última.'},
+     {t:'Lei dos Sexagenários → Lei Eusébio de Queirós → Lei Áurea → Lei do Ventre Livre',w:'A ordem certa é 1850, 1871, 1885 e 1888.'}]},
+   {q:'Qual par está correto?', o:[
+     {t:'João Cândido — Revolta da Chibata',ok:1,w:'Certo! Ele liderou os 2 300 marinheiros em 1910.'},
+     {t:'Nelson Mandela — Lei Áurea',w:'Mandela lutou contra o apartheid. A Lei Áurea foi assinada pela princesa Isabel.'},
+     {t:'Rosa Parks — Poder Moderador',w:'Rosa Parks é dos Estados Unidos (ônibus). O Poder Moderador é de D. Pedro I.'},
+     {t:'Deodoro da Fonseca — apartheid',w:'Deodoro proclamou a República no Brasil. O apartheid era na África do Sul.'}]},
+   {q:'O que a Declaração Universal dos Direitos Humanos (1948) e a Constituição de 1988 têm em comum?', o:[
+     {t:'As duas garantem direitos a todas as pessoas, sem exclusão',ok:1,w:'Muito bem! A Declaração é universal, e a Constituição Cidadã ampliou direitos sem qualquer exclusão.'},
+     {t:'As duas foram outorgadas por um imperador',w:'Nenhuma das duas. A de 1824 é que foi outorgada.'},
+     {t:'As duas mantiveram a escravidão',w:'Não! A Declaração diz que ninguém deve ser mantido em escravidão. A escravidão acabou no Brasil em 1888.'},
+     {t:'As duas criaram o Poder Moderador',w:'O Poder Moderador foi criado na Constituição de 1824.'}]},
+   {q:'Qual sequência está na ordem certa, da mais antiga para a mais recente?', o:[
+     {t:'Constituição de 1824 → Proclamação da República → Revolta da Chibata → Constituição Cidadã',ok:1,w:'Isso! 1824 → 1889 → 1910 → 1988.'},
+     {t:'Proclamação da República → Constituição de 1824 → Constituição Cidadã → Revolta da Chibata',w:'A Constituição de 1824 é a mais antiga, e a Constituição Cidadã (1988) a mais recente.'},
+     {t:'Revolta da Chibata → Constituição de 1824 → Proclamação da República → Constituição Cidadã',w:'A Revolta da Chibata (1910) veio depois da República (1889).'},
+     {t:'Constituição Cidadã → Revolta da Chibata → Proclamação da República → Constituição de 1824',w:'Está de trás para a frente.'}]},
+   {q:'Qual destas situações é um exemplo de segregação racial?', o:[
+     {t:'Bebedouros públicos separados: um para pessoas brancas e outro para pessoas negras',ok:1,w:'Certo! O livro mostra uma foto assim, nos Estados Unidos, em 1950.'},
+     {t:'Votar com a urna eletrônica e a biometria',w:'Isso é segurança nas eleições, não segregação.'},
+     {t:'Assinar a Carta das Nações Unidas',w:'A Carta foi um acordo pela paz e pelos direitos humanos.'},
+     {t:'Garantir o voto aos analfabetos',w:'Isso é o contrário de segregar: é incluir.'}]}
+  ]}
+];
+
+// ----- Mapa Mental: ramos e lacunas (a alternativa errada vem de outro ramo do mapa) -----
+const RAMOS = [
+ {nome:'🕊️ Direitos humanos', cor:'#2b7bd6', nos:[
+   'Direitos garantidos por lei a toda pessoa: vida, liberdade, educação, trabalho.',
+   ['Depois da Segunda Guerra, 50 países assinaram a Carta que criou a ', {id:'L1',certa:'ONU',errada:'Marinha'}, ' (1945).'],
+   ['Declaração Universal dos Direitos Humanos: ano de ', {id:'L2',certa:'1948',errada:'1824'}, ', 30 artigos, proteção universal.']]},
+ {nome:'⚖️ Fim da escravidão', cor:'#d99a00', nos:[
+   'Pressões internas (abolicionistas como José do Patrocínio) e externas (Inglaterra).',
+   '1850 – Lei Eusébio de Queirós: fim do tráfico negreiro.',
+   ['1871 – Ventre Livre: a criança ficava com o senhor da mãe até os ', {id:'L3',certa:'8 anos',errada:'25 anos'}, '.'],
+   '1884 – Ceará, Amazonas e Rio Grande do Sul · 1885 – Sexagenários (mais de 60 anos).',
+   ['1888 – Lei Áurea, assinada pela ', {id:'L4',certa:'princesa Isabel',errada:'Rosa Parks'}, '.']]},
+ {nome:'🏚️ Depois da abolição', cor:'#a0522d', nos:[
+   ['15/11/1889: ', {id:'L5',certa:'Deodoro da Fonseca',errada:'Nelson Mandela'}, ' proclama a República.'],
+   ['Ex-escravizados sem moradia, escola, saúde e emprego; muitos moravam em ', {id:'L6',certa:'cortiços',errada:'navios de guerra'}, '.'],
+   'Os patrões preferiram empregar imigrantes europeus.']},
+ {nome:'⚓ Revolta da Chibata (1910)', cor:'#1f5fa8', nos:[
+   'Na Marinha, os marinheiros, em sua maioria negros, sofriam castigos físicos.',
+   ['Líder: o marinheiro ', {id:'L7',certa:'João Cândido',errada:'José do Patrocínio'}, '.'],
+   '2 300 homens, 4 dias, 5 navios de guerra, carta-manifesto: fim das chibatadas e anistia.']},
+ {nome:'🚫 Contra a segregação', cor:'#e07a1f', nos:[
+   ['EUA, 1955: Rosa Parks não cedeu seu lugar no ', {id:'L8',certa:'ônibus',errada:'navio'}, ' e foi presa.'],
+   'Martin Luther King: desobediência civil, sem violência; boicote; Nobel da Paz 1964.',
+   ['África do Sul: o ', {id:'L9',certa:'apartheid',errada:'Poder Moderador'}, ' separava negros e brancos; Nelson Mandela lutou contra ele.']]},
+ {nome:'📘 Constituições do Brasil', cor:'#14a3b8', nos:[
+   'Constituição = conjunto de leis maiores do país.',
+   ['Governo com repressão, censura e pouca participação do povo: regime ', {id:'L10',certa:'autoritário',errada:'universal'}, '.'],
+   ['1824: D. Pedro I outorga a Constituição e cria o ', {id:'L11',certa:'Poder Moderador',errada:'apartheid'}, '.'],
+   '1824: votavam só homens livres, com mais de 25 anos e renda alta.',
+   ['1988: Constituição ', {id:'L12',certa:'Cidadã',errada:'Áurea'}, ' — voto universal a partir dos 16 anos.']]}
+];
+
+// ----- Verdadeiro ou Falso (banco de 26; sorteia 12) -----
+const VF = [
+ {f:'Os direitos humanos são garantidos a toda pessoa, independentemente de origem, idade ou religião.', v:1, e:'Verdadeiro. Valem para toda pessoa, sem exceção.'},
+ {f:'A ONU foi criada depois da Primeira Guerra Mundial, em 1918.', v:0, e:'Falso. Foi depois da Segunda Guerra Mundial: a Carta das Nações Unidas é de 1945.'},
+ {f:'O Brasil foi um dos 50 países que assinaram a Carta das Nações Unidas, em 1945.', v:1, e:'Verdadeiro. O livro diz que 50 países, incluindo o Brasil, se reuniram.'},
+ {f:'A Declaração Universal dos Direitos Humanos é de 1948 e tem 30 artigos.', v:1, e:'Verdadeiro. Foi a primeira vez que a proteção dos direitos humanos virou universal.'},
+ {f:'Segundo a Declaração, os direitos humanos valem só para os cidadãos dos países ricos.', v:0, e:'Falso. Eles são universais: todas as pessoas, em todo o mundo, têm direito a eles.'},
+ {f:'A Declaração Universal fala só de direitos, e nunca de deveres.', v:0, e:'Falso. Um dos artigos diz que todos os seres humanos têm deveres com a comunidade.'},
+ {f:'A Inglaterra pressionava pelo fim da escravidão no Brasil porque queria um mercado consumidor para seus produtos.', v:1, e:'Verdadeiro. Com trabalho assalariado, haveria gente com dinheiro para comprar.'},
+ {f:'A Lei Eusébio de Queirós, de 1850, acabou com toda a escravidão no Brasil.', v:0, e:'Falso. Ela proibiu só o tráfico negreiro. A escravidão acabou em 1888, com a Lei Áurea.'},
+ {f:'Pela Lei do Ventre Livre, os filhos de escravizadas podiam ter de trabalhar para o senhor até os 21 anos.', v:1, e:'Verdadeiro. Se o dono não recebesse a indenização do governo, podia usar os serviços da criança até os 21.'},
+ {f:'Em 1884, a escravidão acabou no Ceará, no Amazonas e no Rio Grande do Sul.', v:1, e:'Verdadeiro. No Ceará, depois de três anos de luta de jangadeiros, pescadores e negros livres e libertos.'},
+ {f:'A Lei dos Sexagenários libertou a maior parte dos escravizados do Brasil.', v:0, e:'Falso. Por causa dos maus-tratos, poucos chegavam aos 60 anos.'},
+ {f:'A Lei Áurea foi assinada pela princesa Isabel, em 1888.', v:1, e:'Verdadeiro. Ela decretou a abolição da escravidão em todo o Brasil.'},
+ {f:'Depois da abolição, os ex-escravizados receberam casa, escola e emprego do governo.', v:0, e:'Falso. Eles ficaram sem acesso a direitos básicos; muitos foram morar em cortiços.'},
+ {f:'Os grandes fazendeiros deixaram de apoiar a monarquia depois de perderem a mão de obra escravizada.', v:1, e:'Verdadeiro. Sem esse apoio, a República foi proclamada em 1889.'},
+ {f:'A República foi proclamada pela princesa Isabel.', v:0, e:'Falso. Foi o marechal Deodoro da Fonseca, em 15 de novembro de 1889.'},
+ {f:'A Revolta da Chibata começou depois que um marinheiro morreu por causa de 250 chibatadas.', v:1, e:'Verdadeiro. Foi em novembro de 1910, no Rio de Janeiro.'},
+ {f:'Na Revolta da Chibata, o governo recusou todas as exigências dos marinheiros.', v:0, e:'Falso. O governo aceitou as exigências, mas dias depois perseguiu os participantes.'},
+ {f:'João Cândido liderou cerca de 2 300 marinheiros na Revolta da Chibata.', v:1, e:'Verdadeiro. Ele foi preso e libertado dois anos depois.'},
+ {f:'Rosa Parks organizou o boicote aos ônibus de Montgomery.', v:0, e:'Falso. Quem organizou o boicote foi Martin Luther King, três dias depois da prisão de Rosa Parks.'},
+ {f:'Martin Luther King defendia lutar por direitos sem usar violência.', v:1, e:'Verdadeiro. É a resistência pela desobediência civil.'},
+ {f:'O apartheid foi uma política de separação entre negros e brancos na África do Sul.', v:1, e:'Verdadeiro. Apartheid significa "separação".'},
+ {f:'Nelson Mandela ficou 27 anos preso e depois foi eleito presidente da África do Sul.', v:1, e:'Verdadeiro. Solto em 1990, ganhou o Nobel da Paz em 1993 e foi eleito no ano seguinte.'},
+ {f:'Constituição é o conjunto de leis maiores de um país.', v:1, e:'Verdadeiro. Ela define a forma de governo, os poderes e os direitos e deveres dos cidadãos.'},
+ {f:'O Poder Moderador existe até hoje na Constituição de 1988.', v:0, e:'Falso. Ele era da Constituição de 1824. Hoje são três poderes: Executivo, Legislativo e Judiciário.'},
+ {f:'Pela Constituição de 1824, as mulheres e os pobres podiam votar.', v:0, e:'Falso. Só votavam homens livres, com mais de 25 anos e renda anual alta.'},
+ {f:'A Constituição de 1988 garantiu o voto aos analfabetos e incluiu os direitos dos indígenas e quilombolas.', v:1, e:'Verdadeiro. Por isso ela é chamada de Constituição Cidadã.'}
+];
+
+// ----- Mini-quiz relâmpago do Resumo -----
+const RELAMPAGO = [
+ ['Qual documento foi assinado em 1945? E qual foi criado em 1948?', '1945: Carta das Nações Unidas (criação da ONU). 1948: Declaração Universal dos Direitos Humanos.'],
+ ['O que a Lei Eusébio de Queirós proibiu?', 'O tráfico negreiro (1850).'],
+ ['Por que a Lei dos Sexagenários libertou poucas pessoas?', 'Por causa dos maus-tratos, poucos chegavam aos 60 anos — e ainda deviam mais 3 anos de trabalho.'],
+ ['Quem assinou a Lei Áurea?', 'A princesa Isabel, em 1888.'],
+ ['Que direitos faltaram aos ex-escravizados?', 'Moradia, educação, saúde e trabalho assalariado.'],
+ ['O que os marinheiros exigiram em 1910?', 'O fim dos castigos corporais (chibatadas) e a anistia.'],
+ ['O que significa apartheid?', '"Separação".'],
+ ['O que o Poder Moderador permitia?', 'Que o imperador interferisse nos poderes Executivo, Legislativo e Judiciário.'],
+ ['Por que a Constituição de 1988 é "Cidadã"?', 'Porque ampliou os direitos dos cidadãos sem qualquer exclusão (voto universal a partir dos 16, analfabetos incluídos).']
+];
+
+// ----- Simulado (25 questões; a 1ª alternativa listada é a certa, depois são embaralhadas) -----
+const SIM = [
+ {q:'Uma família vinda de outro país, de outra religião e cultura, chega para morar no Brasil. Segundo o livro, os direitos humanos:', o:[['valem para ela também, porque são garantidos a toda pessoa, independentemente de origem, cultura ou religião',1,'Os direitos humanos são de toda pessoa, sem exceção.'],['só passam a valer quando ela tiver a nacionalidade brasileira','A nacionalidade não importa: os direitos humanos são de toda pessoa.'],['valem apenas para os adultos da família','Crianças também têm direitos humanos, como o direito à educação.'],['valem apenas se o país de origem tiver assinado a Carta da ONU','Os direitos humanos são universais: valem em todo o mundo.']]},
+ {q:'Leia: "Depois de um conflito que deixou milhões de mortos, feridos e órfãos, 50 países se reuniram para evitar que algo assim se repetisse." O texto fala:', o:[['da Segunda Guerra Mundial e da assinatura da Carta das Nações Unidas, em 1945',1,'A Carta foi assinada na Conferência de São Francisco, em 26 de junho de 1945.'],['da Revolta da Chibata e da anistia aos marinheiros','A Revolta da Chibata foi no Brasil, em 1910, e não reuniu 50 países.'],['da Proclamação da República no Brasil','A República foi proclamada em 1889, por Deodoro da Fonseca.'],['do movimento Diretas Já','As Diretas Já foram um movimento brasileiro dos anos 1980.']]},
+ {q:'Qual destas afirmações sobre a Declaração Universal dos Direitos Humanos está correta?', o:[['Foi estabelecida pela ONU em 1948 e tem 30 artigos',1,'Foi a primeira vez que a proteção dos direitos humanos virou universal.'],['Foi assinada em 1945, na Conferência de São Francisco','Em 1945 foi assinada a Carta das Nações Unidas. A Declaração é de 1948.'],['Foi escrita por D. Pedro I e tem 17 artigos','D. Pedro I outorgou a Constituição de 1824. A Declaração foi feita pela ONU.'],['Vale apenas para as crianças e os adolescentes','Esse é o foco da UNICEF. A Declaração vale para todos os seres humanos.']]},
+ {q:'Uma aluna diz: "Na escola eu posso dar minha opinião, estudar e ir e vir pelo bairro". Os direitos que ela citou aparecem:', o:[['na Declaração Universal dos Direitos Humanos',1,'Liberdade de opinião e expressão, educação e liberdade de ir e vir estão entre os artigos citados no livro.'],['na Lei dos Sexagenários','Essa lei tratava da liberdade dos escravizados com mais de 60 anos.'],['no manifesto da Revolta da Chibata','O manifesto pedia o fim dos castigos corporais e a anistia.'],['nas leis do apartheid','O apartheid tirava direitos, separando negros e brancos.']]},
+ {q:'Sobre o fim da escravidão no Brasil, relacione: (I) pressão interna; (II) pressão externa. Qual alternativa está correta?', o:[['I – resistência dos escravizados e campanha dos abolicionistas; II – interesse da Inglaterra em vender produtos industrializados',1,'Interna vem de dentro do Brasil; externa vem de outro país.'],['I – interesse da Inglaterra; II – campanha dos abolicionistas','Está invertido: a Inglaterra era a pressão externa.'],['I – criação da ONU; II – Declaração Universal','A ONU (1945) e a Declaração (1948) vieram depois da abolição (1888).'],['I – boicote aos ônibus; II – apartheid','Esses fatos aconteceram nos Estados Unidos e na África do Sul, no século XX.']]},
+ {q:'Por que a Inglaterra queria que o Brasil adotasse o trabalho assalariado?', o:[['Porque trabalhadores com salário formariam um grande mercado consumidor para os produtos ingleses',1,'Quem recebe salário pode comprar.'],['Porque queria comprar o café brasileiro mais barato','O livro fala em vender produtos industrializados, não em comprar café.'],['Porque a Constituição inglesa proibia a escravidão no mundo inteiro','O livro não diz isso. O motivo era formar um mercado consumidor.'],['Porque queria levar os escravizados para trabalhar na Inglaterra','Não. A Inglaterra queria vender seus produtos ao Brasil.']]},
+ {q:'Mesmo depois da Lei Eusébio de Queirós (1850), a escravidão continuou no Brasil. O que aconteceu com o comércio interno de escravizados?', o:[['Ficou mais intenso e mais caro',1,'Sem o tráfico, o comércio dentro do país cresceu e encareceu.'],['Acabou totalmente','A escravidão e o comércio interno continuaram.'],['Ficou mais barato, porque havia muitos escravizados','Foi o contrário: ficou mais caro.'],['Passou a ser feito só no Ceará','O livro não diz isso. O comércio interno ficou mais intenso e caro.']]},
+ {q:'Uma criança nasceu de mãe escravizada em 1875. Pela Lei do Ventre Livre, o que podia acontecer com ela?', o:[['Era livre, mas ficava sob a autoridade do senhor da mãe até os 8 anos; depois, o dono podia receber dinheiro do governo ou usar os serviços dela até os 21 anos',1,'Livre no papel, mas com muitas condições.'],['Era livre e podia votar a partir dos 16 anos','O voto aos 16 só veio com a Constituição de 1988.'],['Continuava escravizada até completar 60 anos','Isso lembra a Lei dos Sexagenários, mas a criança nascida depois de 1871 era declarada livre.'],['Era enviada para a Inglaterra para estudar','O livro não fala nada disso.']]},
+ {q:'No Ceará, a escravidão terminou em 1884. Quem participou dessa luta, segundo o livro?', o:[['Jangadeiros, pescadores, trabalhadores negros livres e libertos',1,'Foram três anos de luta.'],['Somente os fazendeiros escravocratas','Os escravocratas resistiam ao fim da escravidão.'],['Marinheiros liderados por João Cândido','João Cândido liderou a Revolta da Chibata, em 1910.'],['Os parlamentares da Assembleia Constituinte de 1988','A Assembleia Constituinte é de quase um século depois.']]},
+ {q:'No Amazonas e no Rio Grande do Sul, a resistência dos escravocratas ao fim da escravidão foi menor. Por quê?', o:[['Muitos fazendeiros não tinham recursos para comprar escravizados, que ficaram mais caros após a proibição do tráfico',1,'Sem dinheiro para comprar, eles resistiram menos.'],['Porque esses lugares já eram repúblicas independentes','O Brasil só virou República em 1889.'],['Porque a princesa Isabel morava nessas províncias','O livro não fala disso.'],['Porque a ONU proibiu a escravidão nesses lugares','A ONU só surgiu em 1945.']]},
+ {q:'Um historiador escreveu: "A lei parecia libertar, mas quase ninguém conseguia usá-la; e quem conseguia ficava abandonado na velhice." Ele está falando da:', o:[['Lei dos Sexagenários (1885)',1,'Poucos chegavam aos 60 anos e, os que chegavam, ainda deviam 3 anos de trabalho e acabavam abandonados.'],['Lei Áurea (1888)','A Lei Áurea acabou com a escravidão em todo o Brasil.'],['Lei Eusébio de Queirós (1850)','Essa lei proibiu o tráfico negreiro.'],['Constituição Cidadã (1988)','A Constituição Cidadã ampliou direitos sem exclusão.']]},
+ {q:'A Lei Áurea, assinada em 1888, é explicada no livro como resultado de:', o:[['pressões internas do movimento abolicionista e pressões de outros países, como a Inglaterra',1,'As duas forças juntas levaram à abolição.'],['uma ordem da ONU para todos os países','A ONU só seria criada em 1945.'],['um pedido dos fazendeiros escravocratas','Os escravocratas perderam sua mão de obra e ficaram contra a monarquia.'],['uma revolta de marinheiros no Rio de Janeiro','A Revolta da Chibata foi em 1910, depois da abolição.']]},
+ {q:'Qual sequência está em ordem cronológica?', o:[['Lei Eusébio de Queirós → Lei do Ventre Livre → abolição no Ceará → Lei dos Sexagenários → Lei Áurea',1,'1850 → 1871 → 1884 → 1885 → 1888.'],['Lei do Ventre Livre → Lei Eusébio de Queirós → Lei Áurea → Lei dos Sexagenários → abolição no Ceará','A Lei Eusébio de Queirós (1850) é a mais antiga e a Lei Áurea (1888) a mais recente.'],['Lei Áurea → Lei dos Sexagenários → abolição no Ceará → Lei do Ventre Livre → Lei Eusébio de Queirós','Está de trás para a frente.'],['abolição no Ceará → Lei Eusébio de Queirós → Lei dos Sexagenários → Lei do Ventre Livre → Lei Áurea','A abolição no Ceará (1884) veio depois do Ventre Livre (1871).']]},
+ {q:'"Pouco mais de um ano depois da abolição, a monarquia caiu." Qual motivo o livro aponta para isso?', o:[['Os grandes fazendeiros escravocratas perderam sua principal mão de obra e deixaram de apoiar a Coroa',1,'Sem esse apoio, Deodoro proclamou a República em 15/11/1889.'],['A ONU exigiu que o Brasil virasse república','A ONU só surgiu em 1945.'],['D. Pedro I voltou para Portugal','D. Pedro I voltou para Portugal em 1831, muito antes.'],['O movimento Diretas Já tomou o poder','As Diretas Já foram nos anos 1980.']]},
+ {q:'Sobre a vida dos ex-escravizados nos primeiros anos da República, é correto afirmar que:', o:[['muitos não tiveram acesso a moradia, educação, saúde e trabalho assalariado, e a discriminação racial continuou',1,'A cidadania foi negada a eles; muitos moravam em cortiços.'],['todos receberam terras para plantar','O livro não fala em terras: fala em falta de direitos básicos.'],['foram os mais contratados pelas indústrias','Os patrões preferiram imigrantes europeus.'],['passaram a votar em todas as eleições','O livro mostra que a cidadania foi negada a eles.']]},
+ {q:'Por que muitos ex-escravizados entraram na Marinha, no Rio de Janeiro?', o:[['Em busca de oportunidades de trabalho e de melhores condições de vida',1,'Mas lá encontraram castigos físicos que lembravam a escravidão.'],['Para lutar na Segunda Guerra Mundial','A Revolta da Chibata foi em 1910, antes da Segunda Guerra.'],['Porque eram obrigados pela Lei Áurea','A Lei Áurea acabou com a escravidão; não obrigava ninguém a entrar na Marinha.'],['Para fugir do apartheid','O apartheid era na África do Sul.']]},
+ {q:'Na Revolta da Chibata (1910), os marinheiros tomaram cinco navios de guerra e ameaçaram bombardear o Rio de Janeiro. Por que a ameaça ao Rio era tão grave?', o:[['Porque o Rio de Janeiro era a capital do Brasil',1,'Ameaçar a capital pressionava diretamente o governo.'],['Porque lá ficava a sede da ONU','A ONU só surgiu em 1945.'],['Porque era a única cidade com navios','O livro não diz isso. O Rio era a capital do país.'],['Porque lá morava Nelson Mandela','Mandela era sul-africano.']]},
+ {q:'O que mostra que a vitória dos marinheiros na Revolta da Chibata foi incompleta?', o:[['O governo aceitou as exigências, mas depois prendeu os líderes, expulsou cerca de 2 mil marinheiros e dezenas foram mortos',1,'João Cândido também foi preso e só foi libertado dois anos depois.'],['O governo recusou todas as exigências desde o começo','O governo aceitou as exigências — a repressão veio depois.'],['Os castigos corporais aumentaram imediatamente','O livro diz que, com a revolta, os castigos foram suspensos.'],['Os marinheiros foram enviados para os Estados Unidos','O livro não fala disso.']]},
+ {q:'Em Montgomery, em 1955, a placa "colored" no ônibus indicava:', o:[['a parte do ônibus onde os passageiros negros podiam se sentar',1,'Colored significa "pessoa de cor": era a segregação no transporte público.'],['o ponto final do ônibus','Não. Era a placa que separava os lugares dos negros.'],['os lugares reservados aos idosos','Não. Era a placa da segregação racial.'],['que o ônibus era gratuito','Não. Rosa Parks pagou a passagem; a placa separava negros e brancos.']]},
+ {q:'Qual foi a ligação entre a prisão de Rosa Parks e Martin Luther King?', o:[['Três dias depois da prisão, King organizou um boicote aos ônibus de Montgomery, até a lei de segregação ser declarada inconstitucional',1,'A atitude dela chamou a atenção da comunidade que já lutava pelos direitos civis.'],['King era o motorista do ônibus','King era pastor da Igreja Batista.'],['King mandou prender Rosa Parks','Não. Ele lutava pelos direitos civis dos negros, como ela.'],['King e Rosa Parks lutaram juntos contra o apartheid','O apartheid era na África do Sul; a luta deles era nos Estados Unidos.']]},
+ {q:'Um grupo decide parar de usar um serviço de transporte, sem violência, para protestar contra uma lei injusta. Essa forma de protesto se chama:', o:[['boicote',1,'Boicote é evitar usar ou comprar um produto ou serviço, por razões sociais ou políticas.'],['anistia','Anistia é o perdão depois de uma revolta.'],['outorga','Outorgar é impor algo pela vontade de uma pessoa ou grupo.'],['apartheid','Apartheid é a política de separação da África do Sul.']]},
+ {q:'Sobre Nelson Mandela, assinale a alternativa correta:', o:[['Era advogado, lutou contra o apartheid, passou 27 anos preso e foi o primeiro presidente negro da África do Sul',1,'Ele também ganhou o Prêmio Nobel da Paz em 1993.'],['Era pastor nos Estados Unidos e organizou o boicote aos ônibus','Esse foi Martin Luther King.'],['Criou as leis do apartheid em 1948','As leis foram criadas por um governo formado só por brancos. Mandela lutou contra elas.'],['Foi solto em 1962 e nunca mais participou da política','Ele foi preso em 1962, solto em 1990, e depois foi eleito presidente.']]},
+ {q:'Compare dois governos: no governo A, a população vota, se expressa livremente e reivindica direitos; no governo B, há repressão, censura e pouca participação política. Eles são, respectivamente:', o:[['democrático e autoritário',1,'É a diferença que o livro apresenta na Unidade 10.'],['autoritário e democrático','Está invertido: com voto e liberdade é democrático.'],['monárquico e republicano','O livro classifica esses dois tipos como democrático e autoritário.'],['universal e segregacionista','Essas palavras não definem esses tipos de governo.']]},
+ {q:'Na Constituição de 1824, D. Pedro I criou o Poder Moderador. Qual é a diferença entre esse poder e os outros três?', o:[['Era exercido somente pelo imperador e podia interferir no Executivo, no Legislativo e no Judiciário',1,'Assim, os poderes de D. Pedro I ficavam absolutos.'],['Era exercido pelos deputados e senadores, que faziam as leis','Esse era o Poder Legislativo.'],['Era exercido pelos juízes, que interpretavam as leis','Esse era o Poder Judiciário.'],['Era exercido pelo povo, por meio do voto','O povo quase não participava: o Moderador era só do imperador.']]},
+ {q:'Compare quem podia votar em 1824 e depois de 1988:', o:[['1824: só homens livres, com mais de 25 anos e renda alta · 1988: todos os brasileiros maiores de 16 anos, inclusive analfabetos',1,'Por isso a Constituição de 1988 é chamada de Constituição Cidadã.'],['1824: todos os maiores de 16 anos · 1988: só homens com renda alta','Está invertido.'],['1824: homens e mulheres alfabetizados · 1988: só os militares','Nenhuma das duas regras é essa.'],['1824 e 1988: só os homens livres maiores de 25 anos','Em 1988 o voto ficou universal, a partir dos 16 anos.']]}
+];
+// ===================== LÓGICA =====================
+const SLUG = 'hist5colcha';
+const SEED_LEIT = 69, SEED_SIM = 78, SEED_MAPA = 7;
+const K = { leitura:SLUG+'_leitura_v1', mapa:SLUG+'_mapa_v1', vf:SLUG+'_vf_v1', resumo:SLUG+'_resumo_v1', simulado:SLUG+'_simulado_v1', trilha:SLUG+'_trilha_v1' };
+const CODIGO_PAIS = 'PAIS-77';
+const MEM = {};
+function ler(k){ try{ const v = localStorage.getItem(k); if(v!==null) return JSON.parse(v); }catch(e){} return MEM[k] ? JSON.parse(MEM[k]) : null; }
+function gravar(k,o){ const s = JSON.stringify(o); MEM[k] = s; try{ localStorage.setItem(k,s); }catch(e){} }
+function apagar(k){ delete MEM[k]; try{ localStorage.removeItem(k); }catch(e){} }
+
+let S = {};
+function carregar(){
+  S.leitura  = ler(K.leitura)  || {resp:{}, concluido:false};
+  S.mapa     = ler(K.mapa)     || {pecas:{}, concluido:false};
+  S.vf       = ler(K.vf)       || {melhor:null, rodadas:0, historico:[], concluido:false};
+  S.resumo   = ler(K.resumo)   || {maxRolagem:0, concluido:false};
+  S.simulado = ler(K.simulado) || {resp:{}, enviado:false, concluido:false};
+  S.trilha   = ler(K.trilha)   || {liberadoPelosPais:false, liberadoEm:null, vistos:{}, historico:[]};
+  if(!S.trilha.vistos) S.trilha.vistos = {};
+  if(!S.trilha.historico) S.trilha.historico = [];
+}
+function salvar(nome){ S[nome].salvoEm = new Date().toISOString(); gravar(K[nome], S[nome]); atualizarPainel(); renderTrilha(); }
+function concluir(nome){ if(!S[nome].concluido){ S[nome].concluido = true; S[nome].concluidoEm = new Date().toISOString(); } }
+
+// ---------- utilidades ----------
+function hashStr(s){ let h = 2166136261; for(let i=0;i<s.length;i++){ h ^= s.charCodeAt(i); h = Math.imul(h,16777619); } return h>>>0; }
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function embaralhar(arr, seed){ const r = mulberry32(seed); const a = arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function dataBR(iso){ if(!iso) return '—'; const d=new Date(iso); const p=n=>String(n).padStart(2,'0'); return `${p(d.getDate())}/${p(d.getMonth()+1)}/${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}`; }
+const $ = id => document.getElementById(id);
+const LETRAS = ['a','b','c','d'];
+
+// ---------- modal ----------
+function abrirModal(html, botoes){
+  const m = $('modal'); m.innerHTML = html + '<div style="margin-top:14px" id="modalBts"></div>';
+  (botoes||[{t:'OK', cls:'btn'}]).forEach(b=>{ const el=document.createElement('button'); el.className=b.cls||'btn'; el.textContent=b.t; el.onclick=()=>{ fecharModal(); if(b.fn) b.fn(); }; $('modalBts').appendChild(el); });
+  $('fundoModal').classList.add('aberto');
+}
+function fecharModal(){ $('fundoModal').classList.remove('aberto'); }
+
+// ---------- trilha ----------
+const ETAPAS = [
+  {id:'leitura', nome:'Leitura Guiada', ic:'📖'},
+  {id:'mapa', nome:'Mapa Mental para encaixar', ic:'🧠'},
+  {id:'vf', nome:'Verdadeiro ou Falso', ic:'✅'},
+  {id:'resumo', nome:'Resumo', ic:'🗺️'},
+  {id:'simulado', nome:'Simulado', ic:'📝'}
+];
+const idxEtapa = id => ETAPAS.findIndex(e=>e.id===id);
+function feito(id){ return !!(S[id] && S[id].concluido); }
+function aberta(i){ if(i<=0) return true; if(S.trilha.liberadoPelosPais) return true; return feito(ETAPAS[i-1].id) || feito(ETAPAS[i].id); }
+const TOTAL_PERG = BLOCOS.reduce((s,b)=>s+b.qs.length,0);
+function blocoFeito(b){ return b.qs.every((q,qi)=>S.leitura.resp[b.id+'_'+qi]); }
+function blocosFeitos(){ return BLOCOS.filter(blocoFeito).length; }
+const PECAS = []; RAMOS.forEach(r=>r.nos.forEach(n=>{ if(Array.isArray(n)) n.forEach(p=>{ if(typeof p==='object') PECAS.push(p); }); }));
+const TOTAL_PECAS = PECAS.length;
+function pecasFeitas(){ return PECAS.filter(p=>S.mapa.pecas[p.id] && S.mapa.pecas[p.id].feita).length; }
+function faltaTexto(i){
+  const ant = ETAPAS[i-1].id;
+  if(ant==='leitura') return `Destrava quando você concluir os ${BLOCOS.length} retalhos da Leitura Guiada (faltam ${BLOCOS.length-blocosFeitos()}).`;
+  if(ant==='mapa') return `Destrava quando você encaixar as ${TOTAL_PECAS} peças do Mapa Mental (faltam ${TOTAL_PECAS-pecasFeitas()}).`;
+  if(ant==='vf') return 'Destrava quando você jogar uma rodada completa (12 frases) do Verdadeiro ou Falso.';
+  if(ant==='resumo') return 'Destrava quando você ler o Resumo até o fim e clicar em "✅ Li o resumo até o fim".';
+  return '';
+}
+function ehNova(i){ return i>0 && aberta(i) && !feito(ETAPAS[i].id) && !S.trilha.vistos[ETAPAS[i].id]; }
+
+let abaAtual = 'inicio';
+function renderAbas(){
+  const nav = $('abas'); nav.innerHTML = '';
+  const todas = [{id:'inicio', nome:'Início', ic:'🏠'}].concat(ETAPAS);
+  todas.forEach(a=>{
+    const i = idxEtapa(a.id); const b = document.createElement('button');
+    b.innerHTML = `${a.ic} ${a.nome}`;
+    if(a.id===abaAtual) b.classList.add('ativa');
+    if(i>=0 && !aberta(i)){ b.classList.add('trancada'); b.innerHTML = `🔒 ${a.nome}`; b.title = faltaTexto(i); }
+    else if(i>=0 && feito(a.id)) b.innerHTML += ' <span class="selo">✅</span>';
+    else if(i>=0 && ehNova(i)) b.innerHTML += ' <span class="selo">✨ Novo</span>';
+    b.onclick = ()=>ir(a.id);
+    nav.appendChild(b);
+  });
+}
+function renderTrilha(){
+  const box = $('trilhaCards'); if(!box) return; box.innerHTML = '';
+  if(S.trilha.liberadoPelosPais){ const s=document.createElement('div'); s.className='caixa'; s.innerHTML='🔓 <b>Trilha liberada pelos pais</b> em '+dataBR(S.trilha.liberadoEm); box.appendChild(s); }
+  ETAPAS.forEach((e,i)=>{
+    const b = document.createElement('button'); b.className='etapa';
+    let status;
+    if(!aberta(i)){ b.classList.add('trancada'); status = `<span class="tag lock">🔒 Trancado</span><div class="sub">${faltaTexto(i)}</div>`; }
+    else if(feito(e.id)){ b.classList.add('feita'); status = `<span class="tag ok">✅ Concluído</span><div class="sub">em ${dataBR(S[e.id].concluidoEm)}</div>`; }
+    else if(ehNova(i)){ b.classList.add('nova'); status = `<span class="tag novo">✨ Novo destravado</span>`; }
+    else status = `<span class="sub">${i===0?'Comece por aqui!':'Aberto'}</span>`;
+    b.innerHTML = `<span class="ic">${e.ic}</span><span><b>${i+1}. ${e.nome}</b> ${status}</span>`;
+    b.onclick = ()=>ir(e.id);
+    box.appendChild(b);
+  });
+  renderAbas(); renderProximos();
+}
+function renderProximos(){
+  document.querySelectorAll('[data-proximo]').forEach(bt=>{
+    const i = idxEtapa(bt.dataset.proximo);
+    const ok = aberta(i);
+    bt.disabled = !ok;
+    if(!bt.dataset.rotulo) bt.dataset.rotulo = bt.textContent;
+    bt.textContent = ok ? bt.dataset.rotulo : '🔒 ' + bt.dataset.rotulo.replace(/^\S+\s/,'');
+    bt.title = ok ? '' : faltaTexto(i);
+    bt.onclick = ()=>ir(bt.dataset.proximo);
+  });
+}
+function modalTrancada(i){
+  abrirModal(`<div class="trofeu">🔒</div><h2>Esta etapa ainda está trancada</h2><p>Para abrir <b>${ETAPAS[i].nome}</b>, conclua antes <b>${ETAPAS[i-1].nome}</b>.</p><p>${faltaTexto(i)}</p>`,
+    [{t:'Ir para '+ETAPAS[i-1].nome, cls:'btn', fn:()=>ir(ETAPAS[i-1].id)},{t:'Voltar ao início', cls:'btn claro', fn:()=>ir('inicio')}]);
+}
+function ir(id){
+  const i = idxEtapa(id);
+  if(id!=='inicio' && i<0) id='inicio';
+  if(i>=0 && !aberta(i)){ modalTrancada(i); return; }
+  abaAtual = id;
+  document.querySelectorAll('section.aba').forEach(s=>s.classList.toggle('ativa', s.id==='sec-'+id));
+  if(i>=0 && !S.trilha.vistos[id]){ S.trilha.vistos[id] = new Date().toISOString(); gravar(K.trilha, S.trilha); }
+  renderTrilha();
+  window.scrollTo(0,0);
+  if(id==='resumo') setTimeout(medirRolagem, 300);
+}
+
+// ---------- LEITURA ----------
+const fechados = {};
+function opcoesDe(q, seed){ return embaralhar(q.o.map((o,k)=>Object.assign({k}, o)), seed); }
+function renderLeitura(){
+  const box = $('blocosLeitura'); box.innerHTML = '';
+  let anteriorFeito = true;
+  BLOCOS.forEach((b,j)=>{
+    const liberado = anteriorFeito; const completo = blocoFeito(b);
+    const d = document.createElement('div');
+    d.className = 'card bloco' + (liberado?'':' trancado') + (fechados[b.id]?' fechado':'');
+    d.style.setProperty('--c', b.cor); d.id = 'bloco-'+b.id;
+    let cab = `<div class="cab"><div><h2 style="color:${b.cor}">${b.emoji} ${j+1}. ${b.titulo}</h2><div class="sub">${b.tema} · ${b.pag}</div></div><div>${completo?'<span class="tag ok">✅ feito</span>':(liberado?'':'<span class="tag lock">🔒</span>')}</div></div>`;
+    if(!liberado){ d.innerHTML = cab + `<p class="sub">🔒 Abre quando você responder as perguntas do retalho ${j}.</p>`; box.appendChild(d); anteriorFeito=false; return; }
+    let corpo = `<div class="corpo">${b.html}<div class="caixa">🔑 <b>Palavras importantes:</b> ${b.palavras.join(' · ')}</div><h3>🎯 Responda as ${b.qs.length} perguntas</h3>`;
+    b.qs.forEach((q,qi)=>{
+      const qid = b.id+'_'+qi; const r = S.leitura.resp[qid];
+      const ops = opcoesDe(q, hashStr(qid)+SEED_LEIT);
+      corpo += `<div class="pergunta"><b>${qi+1}) ${q.q}</b><div class="opcoes">`;
+      ops.forEach((o,pi)=>{
+        let cls = 'op';
+        if(r){ if(o.ok) cls+=' certa'; else if(o.k===r.esc) cls+=' errada'; else cls+=' cinza'; }
+        corpo += `<button class="${cls}" ${r?'disabled':''} data-q="${qid}" data-k="${o.k}">${LETRAS[pi]}) ${o.t}</button>`;
+      });
+      corpo += `</div>`;
+      if(r){ const esc = q.o[r.esc]; const certa = q.o.find(o=>o.ok);
+        corpo += r.ok ? `<div class="fb ok">🎉 ${esc.w}</div>` : `<div class="fb no">💭 Quase! ${esc.w}<br>✔️ <b>Resposta certa:</b> ${certa.t} — ${certa.w}</div>`; }
+      corpo += `</div>`;
+    });
+    corpo += `</div>`;
+    d.innerHTML = cab + corpo; box.appendChild(d);
+    d.querySelector('.cab').onclick = ()=>{ fechados[b.id] = !fechados[b.id]; d.classList.toggle('fechado'); };
+    anteriorFeito = completo;
+  });
+  box.querySelectorAll('button.op').forEach(bt=>bt.onclick = ()=>responderLeitura(bt.dataset.q, +bt.dataset.k));
+  const resp = Object.keys(S.leitura.resp).length; const acertos = Object.values(S.leitura.resp).filter(r=>r.ok).length;
+  $('barraLeitura').style.width = (resp/TOTAL_PERG*100)+'%';
+  $('txtLeitura').innerHTML = `${resp} de ${TOTAL_PERG} perguntas respondidas · ⭐ ${acertos} acertos · ${blocosFeitos()} de ${BLOCOS.length} retalhos costurados 🧵`;
+  renderVila();
+  $('fimLeitura').style.display = S.leitura.concluido ? 'block' : 'none';
+}
+function responderLeitura(qid, k){
+  if(S.leitura.resp[qid]) return;
+  const [bid, qi] = qid.split('_'); const b = BLOCOS.find(x=>x.id===bid); const q = b.qs[+qi];
+  S.leitura.resp[qid] = {esc:k, ok:!!q.o[k].ok, em:new Date().toISOString()};
+  const fimAgora = !S.leitura.concluido && Object.keys(S.leitura.resp).length===TOTAL_PERG;
+  if(fimAgora) concluir('leitura');
+  salvar('leitura'); renderLeitura();
+  if(fimAgora) abrirModal('<div class="trofeu">🏆</div><h2>Leitura concluída!</h2><p>Você costurou a colcha inteira! 🧵 O <b>Mapa Mental</b> foi destravado! ✨</p>', [{t:'🧠 Ir para o Mapa Mental', cls:'btn', fn:()=>ir('mapa')},{t:'Ficar aqui', cls:'btn claro'}]);
+}
+
+function renderVila(){
+  const v = $('vila'); if(!v) return;
+  v.innerHTML = BLOCOS.map((b,j)=>`<div class="ret ${blocoFeito(b)?'costurado':''}" style="--c:${b.cor}" title="${j+1}. ${b.titulo}">${b.emoji}<small>${j+1}</small></div>`).join('');
+}
+
+// ---------- MAPA MENTAL ----------
+function renderMapa(){
+  const box = $('ramosMapa'); box.innerHTML = '';
+  RAMOS.forEach(r=>{
+    const d = document.createElement('div'); d.className='ramo'; d.style.setProperty('--c', r.cor);
+    let h = `<h4>${r.nome}</h4>`;
+    r.nos.forEach(n=>{
+      if(typeof n==='string'){ h += `<div class="no">• ${n}</div>`; return; }
+      h += '<div class="no">• ' + n.map(p=>{
+        if(typeof p==='string') return p;
+        const st = S.mapa.pecas[p.id];
+        if(st && st.feita) return `<span class="lacuna feita"><span>${p.certa}</span></span>`;
+        const ops = embaralhar([p.certa, p.errada], hashStr(p.id)+SEED_MAPA);
+        return `<span class="lacuna">` + ops.map(o=>`<button data-p="${p.id}" data-v="${o}">${o}</button>`).join('<span style="align-self:center">ou</span>') + `</span>`;
+      }).join('') + '</div>';
+    });
+    d.innerHTML = h; box.appendChild(d);
+  });
+  box.querySelectorAll('.lacuna button').forEach(bt=>bt.onclick = ()=>encaixar(bt));
+  const f = pecasFeitas();
+  $('contadorMapa').textContent = f===TOTAL_PECAS ? '🧠 Mapa completo!' : `🧩 Mapa: ${f} de ${TOTAL_PECAS} peças encaixadas`;
+  $('mapa').classList.toggle('incompleto', f<TOTAL_PECAS);
+  $('mapa').classList.toggle('completo', f===TOTAL_PECAS);
+  $('mapaFim').style.display = f===TOTAL_PECAS ? 'block' : 'none';
+}
+function encaixar(bt){
+  const p = PECAS.find(x=>x.id===bt.dataset.p); const st = S.mapa.pecas[p.id] || {feita:false, tentou:false};
+  if(bt.dataset.v===p.certa){
+    st.feita = true; st.deprimeira = !st.tentou; st.em = new Date().toISOString(); S.mapa.pecas[p.id] = st;
+    const fimAgora = !S.mapa.concluido && pecasFeitas()===TOTAL_PECAS;
+    if(fimAgora) concluir('mapa');
+    salvar('mapa'); renderMapa();
+    if(fimAgora) abrirModal('<div class="trofeu">🧠</div><h2>Mapa completo!</h2><p>Você montou o mapa inteiro. O <b>Verdadeiro ou Falso</b> foi destravado! ✨</p>', [{t:'✅ Jogar Verdadeiro ou Falso', cls:'btn', fn:()=>ir('vf')},{t:'Ver o mapa', cls:'btn claro'}]);
+  } else {
+    st.tentou = true; S.mapa.pecas[p.id] = st; salvar('mapa');
+    bt.classList.remove('erro'); void bt.offsetWidth; bt.classList.add('erro');
+  }
+}
+
+// ---------- VERDADEIRO OU FALSO ----------
+let rodada = null;
+function novaRodada(){ const idx = embaralhar(VF.map((_,i)=>i), (Math.random()*1e9)>>>0).slice(0,12); rodada = {itens:idx, i:0, acertos:0, respondida:null}; renderVF(); }
+function estrelas(pct){ const n = Math.round(pct/20); return '⭐'.repeat(n) + '☆'.repeat(5-n); }
+function renderVF(){
+  const box = $('vfJogo');
+  if(!rodada){
+    box.innerHTML = `<h2>✅ Verdadeiro ou Falso</h2><p>Vou mostrar <b>12 frases</b> sobre a colcha dos direitos. Para cada uma, diga se é <b>Verdadeira</b> ou <b>Falsa</b>. Depois de cada resposta aparece a explicação.</p>
+      ${S.vf.melhor!==null?`<p>🏅 Seu melhor placar: <b>${S.vf.melhor}%</b> ${estrelas(S.vf.melhor)} · rodadas jogadas: ${S.vf.rodadas}</p>`:''}
+      <div style="text-align:center"><button class="btn faisca" id="btVfComecar">▶️ Começar rodada</button></div>`;
+    $('btVfComecar').onclick = novaRodada; return;
+  }
+  if(rodada.i >= rodada.itens.length){
+    const pct = Math.round(rodada.acertos/rodada.itens.length*100);
+    box.innerHTML = `<div class="placar-final"><div class="trofeu">🏆</div><h2>Rodada completa!</h2><p>Você acertou <b>${rodada.acertos} de ${rodada.itens.length}</b> — <b>${pct}%</b></p><p class="estrelas">${estrelas(pct)}</p><p>🏅 Melhor placar: ${S.vf.melhor}%</p>
+      <button class="btn fio" id="btVfDeNovo">🔁 Jogar de novo</button> <button class="btn faisca" id="btVfResumo">🗺️ Agora revise no Resumo!</button></div>`;
+    $('btVfDeNovo').onclick = novaRodada; $('btVfResumo').onclick = ()=>ir('resumo'); return;
+  }
+  const it = VF[rodada.itens[rodada.i]];
+  let h = `<div class="sub">Frase ${rodada.i+1} de ${rodada.itens.length} · ✔️ ${rodada.acertos} acertos</div><div class="barra"><div style="width:${rodada.i/rodada.itens.length*100}%"></div></div>
+    <div class="vf-frase">"${it.f}"</div>`;
+  if(rodada.respondida===null){
+    h += `<div class="vf-bts"><button class="btn" id="btV">👍 Verdadeiro</button><button class="btn faisca" id="btF">👎 Falso</button></div>`;
+    box.innerHTML = h; $('btV').onclick = ()=>responderVF(1); $('btF').onclick = ()=>responderVF(0);
+  } else {
+    const acertou = rodada.respondida===it.v;
+    h += `<div class="fb ${acertou?'ok':'no'}">${acertou?'🎉 Acertou!':'💭 Não foi dessa vez.'} ${it.e}</div><div style="text-align:center;margin-top:10px"><button class="btn fio" id="btVfProx">${rodada.i+1<rodada.itens.length?'➡️ Próxima frase':'🏁 Ver resultado'}</button></div>`;
+    box.innerHTML = h; $('btVfProx').onclick = ()=>{ rodada.i++; rodada.respondida=null; if(rodada.i>=rodada.itens.length) fimRodada(); renderVF(); };
+  }
+}
+function responderVF(v){ const it = VF[rodada.itens[rodada.i]]; rodada.respondida = v; if(v===it.v) rodada.acertos++; renderVF(); }
+function fimRodada(){
+  const pct = Math.round(rodada.acertos/rodada.itens.length*100);
+  S.vf.rodadas = (S.vf.rodadas||0)+1; S.vf.melhor = Math.max(S.vf.melhor||0, pct);
+  S.vf.historico = (S.vf.historico||[]).concat([{pct, em:new Date().toISOString()}]).slice(-20);
+  const primeira = !S.vf.concluido; concluir('vf'); salvar('vf');
+  if(primeira) setTimeout(()=>abrirModal('<div class="trofeu">🗺️</div><h2>Resumo destravado!</h2><p>Agora revise tudo no <b>Resumo</b> antes do Simulado.</p>', [{t:'🗺️ Ir para o Resumo', cls:'btn', fn:()=>ir('resumo')},{t:'Ficar aqui', cls:'btn claro'}]), 200);
+}
+
+// ---------- RESUMO ----------
+function renderResumo(){
+  $('relampago').innerHTML = RELAMPAGO.map((r,i)=>`<button class="op" data-r="${i}">⚡ ${r[0]}</button><div class="resp-oculta" id="rel${i}">👉 ${r[1]}</div>`).join('');
+  document.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{ const el=$('rel'+b.dataset.r); el.style.display = el.style.display==='block'?'none':'block'; });
+  atualizarBotaoResumo();
+}
+function medirRolagem(){
+  if(abaAtual!=='resumo') return;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = h<=0 ? 100 : Math.min(100, Math.round(window.scrollY/h*100));
+  if(pct > (S.resumo.maxRolagem||0)){ S.resumo.maxRolagem = pct; salvar('resumo'); }
+  atualizarBotaoResumo();
+}
+function atualizarBotaoResumo(){
+  const bt = $('btLiResumo'); const pode = S.resumo.concluido || (S.resumo.maxRolagem||0) >= 90;
+  bt.disabled = !pode || S.resumo.concluido;
+  bt.textContent = S.resumo.concluido ? '✅ Resumo lido!' : '✅ Li o resumo até o fim';
+  $('txtLiResumo').textContent = S.resumo.concluido ? 'Concluído em '+dataBR(S.resumo.concluidoEm)+'. O Simulado está aberto!' : (pode ? 'Pode clicar!' : 'O botão acende quando você chegar ao fim da página.');
+}
+function liResumo(){
+  if(S.resumo.concluido) return;
+  concluir('resumo'); salvar('resumo'); atualizarBotaoResumo();
+  abrirModal('<div class="trofeu">📝</div><h2>Simulado destravado!</h2><p>Agora é hora de mostrar o que aprendeu. Boa sorte, jovem aprendiz!</p>', [{t:'📝 Ir para o Simulado', cls:'btn', fn:()=>ir('simulado')},{t:'Revisar mais um pouco', cls:'btn claro'}]);
+}
+
+// ---------- SIMULADO ----------
+function opsSim(qi){ const q = SIM[qi]; const base = q.o.map((o,k)=>({k, t:o[0], ok:o.length===3, w:o.length===3?o[2]:o[1]})); return embaralhar(base, hashStr('sim'+qi)+SEED_SIM); }
+function renderSimulado(){
+  const box = $('questoesSim'); box.innerHTML = '';
+  SIM.forEach((q,qi)=>{
+    const d = document.createElement('div'); d.className = 'card';
+    const r = S.simulado.resp[qi];
+    let h = `<b>Questão ${qi+1}.</b> ${q.q}<div class="opcoes" style="margin-top:8px">`;
+    opsSim(qi).forEach((o,pi)=>{
+      let cls='op'; if(r===o.k) cls+=' sel';
+      if(S.simulado.enviado){ cls='op'+(o.ok?' certa':(r===o.k?' errada':' cinza')); }
+      h += `<button class="${cls}" ${S.simulado.enviado?'disabled':''} data-sq="${qi}" data-k="${o.k}">${LETRAS[pi]}) ${o.t}</button>`;
+    });
+    d.innerHTML = h + '</div>'; box.appendChild(d);
+  });
+  if(!S.simulado.enviado) box.querySelectorAll('[data-sq]').forEach(b=>b.onclick=()=>{ S.simulado.resp[b.dataset.sq] = +b.dataset.k; salvar('simulado'); renderSimulado(); });
+  const n = Object.keys(S.simulado.resp).length;
+  $('barraSim').style.width = (n/SIM.length*100)+'%';
+  $('txtSim').textContent = S.simulado.enviado ? `Enviado em ${dataBR(S.simulado.enviadoEm)}` : `${n} de ${SIM.length} respondidas`;
+  $('envioSim').style.display = S.simulado.enviado ? 'none' : 'block';
+  renderResultado();
+}
+function gerarCodigo(ac){ const L='ABCDEFGHJKLMNPQRSTUVWXYZ'; const r=()=>L[Math.floor(Math.random()*L.length)]; return `SIM-${String(ac).padStart(2,'0')}-${r()}${r()}`; }
+function enviarSim(){
+  const falta = SIM.map((_,i)=>i).filter(i=>S.simulado.resp[i]===undefined);
+  if(falta.length){ abrirModal(`<div class="trofeu">✏️</div><h2>Ainda faltam ${falta.length} questões</h2><p>Responda as questões: <b>${falta.map(i=>i+1).join(', ')}</b>.</p>`); return; }
+  abrirModal('<h2>Enviar o Simulado?</h2><p>Depois de enviar, não dá para mudar as respostas.</p>', [{t:'📨 Enviar', cls:'btn faisca', fn:confirmarEnvio},{t:'Revisar antes', cls:'btn claro'}]);
+}
+function confirmarEnvio(){
+  let ac = 0; SIM.forEach((q,qi)=>{ if(q.o[S.simulado.resp[qi]].length===3) ac++; });
+  S.simulado.acertos = ac; S.simulado.enviado = true; S.simulado.enviadoEm = new Date().toISOString();
+  if(!S.simulado.codigo) S.simulado.codigo = gerarCodigo(ac);
+  concluir('simulado'); salvar('simulado'); renderSimulado();
+  setTimeout(()=>{ const el=$('resultadoSim'); if(el) el.scrollIntoView({behavior:'smooth'}); }, 100);
+}
+function renderResultado(){
+  const box = $('resultadoSim');
+  if(!S.simulado.enviado){ box.innerHTML=''; return; }
+  const ac = S.simulado.acertos; const pct = Math.round(ac/SIM.length*100);
+  let h = `<div class="card placar-final"><div class="trofeu">${pct>=70?'🏆':'💪'}</div><h2>Você acertou ${ac} de ${SIM.length} (${pct}%)</h2><p class="estrelas">${estrelas(pct)}</p>
+    <p>${pct>=70?'Mandou muito bem!':'Continue treinando: releia o Resumo e confira o gabarito abaixo.'}</p>
+    <p>Seu código para os pais: <b style="font-size:1.3em;color:var(--fio2)">${S.simulado.codigo}</b></p></div>
+    <div class="card"><h2>📗 Gabarito comentado</h2><p class="sub">A certa aparece em verde. As outras aparecem em cinza, com a explicação do erro. A sua resposta tem contorno azul. O gabarito também está no <a href="gabarito_simulado.html" target="_blank">arquivo separado</a>.</p>`;
+  SIM.forEach((q,qi)=>{
+    const r = S.simulado.resp[qi]; const ops = opsSim(qi); const acertou = q.o[r].length===3;
+    h += `<div class="gab-q"><b>${acertou?'✅':'❌'} Questão ${qi+1}.</b> ${q.q}`;
+    ops.forEach((o,pi)=>{ h += `<div class="gab-op ${o.ok?'certa':'cinza'} ${r===o.k?'marcada':''}">${o.ok?'✔️':'✖️'} <b>${LETRAS[pi]}) ${o.t}</b>${r===o.k?' <i>(sua resposta)</i>':''}<br><span>${o.w}</span></div>`; });
+    h += `</div>`;
+  });
+  box.innerHTML = h + '</div>';
+}
+
+// ---------- PAINEL / RELATÓRIO / EXPORTAR ----------
+function atualizarPainel(){
+  const datas = ['leitura','mapa','vf','resumo','simulado'].map(n=>S[n]&&S[n].salvoEm).filter(Boolean).sort();
+  const el = $('painelSalvar'); if(el) el.textContent = datas.length ? `Progresso salvo neste aparelho. Último salvamento: ${dataBR(datas[datas.length-1])}` : 'Seu progresso é salvo sozinho neste aparelho.';
+}
+function abrirRelatorio(){
+  const cod = $('codPais').value.trim().toUpperCase(); const area = $('areaPais');
+  const ehPais = cod===CODIGO_PAIS; const ehSim = S.simulado.codigo && cod===S.simulado.codigo;
+  if(!ehPais && !ehSim){ area.innerHTML = '<p class="fb no">Código não reconhecido. Use o código do Simulado (SIM-…) ou o código da família.</p>'; return; }
+  const resp = Object.values(S.leitura.resp); const lAc = resp.filter(r=>r.ok).length;
+  const errLeit = []; BLOCOS.forEach(b=>b.qs.forEach((q,qi)=>{ const r=S.leitura.resp[b.id+'_'+qi]; if(r && !r.ok) errLeit.push(b.titulo+' – '+q.q); }));
+  const pecasPrim = PECAS.filter(p=>S.mapa.pecas[p.id] && S.mapa.pecas[p.id].feita && S.mapa.pecas[p.id].deprimeira).length;
+  const errSim = S.simulado.enviado ? SIM.map((q,qi)=>q.o[S.simulado.resp[qi]].length===3?null:qi+1).filter(Boolean) : [];
+  let h = `<table class="rel"><tr><th>Material</th><th>Resultado</th></tr>
+   <tr><td>📖 Leitura Guiada</td><td>${resp.length} de ${TOTAL_PERG} respondidas · ${lAc} acertos de primeira${errLeit.length?'<br><span class="sub">Errou: '+errLeit.join('; ')+'</span>':''}</td></tr>
+   <tr><td>🧠 Mapa Mental</td><td>${pecasFeitas()} de ${TOTAL_PECAS} peças encaixadas · <b>Mapa Mental: ${pecasPrim} de ${TOTAL_PECAS} peças encaixadas de primeira</b></td></tr>
+   <tr><td>✅ Verdadeiro ou Falso</td><td>${S.vf.melhor!==null?'Melhor placar: '+S.vf.melhor+'% · rodadas: '+S.vf.rodadas:'Ainda não jogou'}</td></tr>
+   <tr><td>🗺️ Resumo</td><td>Rolagem máxima: ${S.resumo.maxRolagem||0}% · ${S.resumo.concluido?'marcou "li até o fim"':'não marcou "li até o fim"'}</td></tr>
+   <tr><td>📝 Simulado</td><td>${S.simulado.enviado?`${S.simulado.acertos} de ${SIM.length} (${Math.round(S.simulado.acertos/SIM.length*100)}%) · código ${S.simulado.codigo}${errSim.length?'<br><span class="sub">Errou as questões: '+errSim.join(', ')+'</span>':''}`:'Ainda não enviado'}</td></tr>
+   <tr><td>🛤️ Trilha</td><td>${ETAPAS.map(e=>`${e.ic} ${e.nome}: ${feito(e.id)?'✅ concluída em '+dataBR(S[e.id].concluidoEm):'⏳ não concluída'}`).join('<br>')}
+     <br>${S.trilha.liberadoPelosPais?'🔓 Trilha liberada pelos pais em '+dataBR(S.trilha.liberadoEm):'🔒 Trilha não liberada pelos pais'}
+     ${S.trilha.historico.length?'<br><span class="sub">Histórico: '+S.trilha.historico.map(x=>x.acao+' em '+dataBR(x.em)).join('; ')+'</span>':''}</td></tr></table>`;
+  if(ehPais){
+    h += S.trilha.liberadoPelosPais
+      ? `<p class="caixa">🔓 <b>Trilha liberada pelos pais</b></p><button class="btn claro" id="btTrancar">🔒 Trancar de novo</button>`
+      : `<button class="btn fio" id="btLiberar">🔓 Liberar todos os materiais</button>`;
+  }
+  area.innerHTML = h;
+  if($('btLiberar')) $('btLiberar').onclick = ()=>{ S.trilha.liberadoPelosPais=true; S.trilha.liberadoEm=new Date().toISOString(); S.trilha.historico.push({acao:'liberou', em:S.trilha.liberadoEm}); gravar(K.trilha,S.trilha); renderTrilha(); abrirRelatorio(); };
+  if($('btTrancar')) $('btTrancar').onclick = ()=>{ S.trilha.liberadoPelosPais=false; S.trilha.historico.push({acao:'trancou de novo', em:new Date().toISOString()}); gravar(K.trilha,S.trilha); renderTrilha(); abrirRelatorio(); };
+}
+function exportar(){
+  const dados = {kit:SLUG, titulo:'Colcha dos Direitos — História 5º ano', exportadoEm:new Date().toISOString(), leitura:S.leitura, mapa:S.mapa, vf:S.vf, resumo:S.resumo, simulado:S.simulado, trilha:S.trilha};
+  const blob = new Blob([JSON.stringify(dados,null,2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'progresso_colcha_dos_direitos.json'; document.body.appendChild(a); a.click(); a.remove();
+}
+function importar(arq){
+  const fr = new FileReader();
+  fr.onload = ()=>{ try{ const d = JSON.parse(fr.result); if(d.kit!==SLUG) throw 0;
+      ['leitura','mapa','vf','resumo','simulado','trilha'].forEach(n=>{ if(d[n]) gravar(K[n], d[n]); });
+      carregar(); renderTudo(); abrirModal('<h2>📤 Progresso importado!</h2>');
+    }catch(e){ abrirModal('<h2>Arquivo não reconhecido</h2><p>Escolha o arquivo exportado deste kit.</p>'); } };
+  fr.readAsText(arq);
+}
+function zerarTudo(){
+  abrirModal('<h2>🗑️ Zerar tudo?</h2><p>Todo o progresso deste kit será apagado neste aparelho.</p>', [{t:'Sim, zerar', cls:'btn faisca', fn:()=>{ Object.values(K).forEach(apagar); carregar(); rodada=null; renderTudo(); ir('inicio'); }},{t:'Cancelar', cls:'btn claro'}]);
+}
+
+function renderTudo(){ renderLeitura(); renderMapa(); renderVF(); renderResumo(); renderSimulado(); atualizarPainel(); renderTrilha(); }
+function iniciar(){
+  carregar(); renderTudo();
+  $('btExportar').onclick = exportar; $('btImportar').onclick = ()=>$('arqImportar').click();
+  $('arqImportar').onchange = e=>{ if(e.target.files[0]) importar(e.target.files[0]); e.target.value=''; };
+  $('btZerar').onclick = zerarTudo; $('btRelatorio').onclick = abrirRelatorio;
+  $('codPais').addEventListener('keydown', e=>{ if(e.key==='Enter') abrirRelatorio(); });
+  $('btLiResumo').onclick = liResumo; $('btEnviarSim').onclick = enviarSim;
+  window.addEventListener('scroll', ()=>{ if(abaAtual==='resumo') medirRolagem(); }, {passive:true});
+  window.addEventListener('hashchange', ()=>{ const h = location.hash.replace('#',''); if(h) ir(h); });
+  const h0 = location.hash.replace('#',''); ir(h0 || 'inicio');
+}
+iniciar();
+</script>
+</body>
+</html>
